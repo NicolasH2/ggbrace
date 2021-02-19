@@ -41,7 +41,7 @@ ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
 To change where the brace is pointing, we change the mid parameter. This is always between 0.25 and 0.75 (even if you type in something smaller or higher), with 0.5 being the default. 
 
 ``` r
-mybrace <- seekBrace(mid=0.3)
+mybrace <- seekBrace(mid=0.7)
 ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
 <img src="data/brace_shift.png"/>
