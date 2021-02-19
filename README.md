@@ -18,6 +18,7 @@ library(curlyBraces, ggplot2)
 mybrace <- seekBrace()
 ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
+<img src="data/brace_up.png"/>
 We can also produce a brace that points sideways instead of up or down. However, we must then spefify the orientation parameter in ggplot, otherwise our brace will end up as a zickzack line (if for some reason the above already results in a zickzack line for you, specify orientation="x"):
 ``` r
 mybrace <- seekBrace(pointing="side")
