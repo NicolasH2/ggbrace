@@ -10,14 +10,18 @@ devtools::install_github("solatar/curlybRaces")
 
 ## Use
 
-Load the package and create your brace:
+Load the package, create your first brace and plot it with ggplot2:
 ``` r
-library(curlybRaces)
-mybrace <- seekBrace()
-```
+library(curlybRaces, ggplot2)
 
-Plot the brace. Here we use ggplot:
+mybrace <- seekBrace()
+ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
+```
+Note the orientation statement in ggplot. If we would not have specified it, the brace would be a zickzack line instead.
+
+We can also produce a brace that point up oder down instead of sideways:
 ``` r
-library(ggplot2)
+mybrace <- seekBrace(pointing="updown")
 ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
+When we construct an up or down pointing brace, we do not need to specify the orientation in ggplot. However, if for some reason this results in a zickzack line for you, specify orientation="x".
