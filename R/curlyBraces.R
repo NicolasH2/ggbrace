@@ -27,13 +27,13 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
   radiusY <- (yend-ystart)/2
   if(pointing %in% "side"){
     radiusY <- radiusY/4
-    ymiddle <- yend-(yend-ystart)*mid
-    xmiddle <- xend-(xend-xstart)*.5
+    ymiddle <- (yend+ystart)*mid
+    xmiddle <- (xend+xstart)*.5
   }
   if(pointing %in% "updown"){
     radiusX <- radiusX/4
-    ymiddle <- yend-(yend-ystart)*.5
-    xmiddle <- xend-(xend-xstart)*mid
+    ymiddle <- (yend+ystart)*.5
+    xmiddle <- (xend+xstart)*mid
   }
 
   circle <- function(x=0,y=0){
