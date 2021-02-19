@@ -1,4 +1,5 @@
 # curlybRaces
+
 Wanna draw curly braces into your ggplot or plotly graph? This package provides the function seekBrace(), which outputs a data.frame, ready to be plotted.
 
 ## Installation
@@ -22,15 +23,19 @@ We can also produce a brace that points sideways instead of up or down. However,
 mybrace <- seekBrace(pointing="side")
 ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
 ```
+You can add the geom_line() to your plot of choice to include the brace. Specify its x and y coordinates to put it wherever you want (see below).
 
 ## Custom braces
-To put braces wherever you want in your graph, we can change the x and y coordinates of the bracket. This can also change where the bracket is pointing to. If xend is smaller then xstart, the brace will point to the left. The same is true for the y coordinates if we specify the pointing parameter to be "updown".
+
+To put braces wherever you want in your graph, we can change the x and y coordinates of the bracket. This can also change where the bracket is pointing to. If yend is smaller then ystart, the brace will point downwards. If xend is smaller than xstart and parameter="side" is specified, it will point to the left.
 ``` r
-mybrace <- seekBrace(xstart=3, xend=1, ystart=2, yend= -2)
-ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
+mybrace <- seekBrace(ystart=2, yend= -2)
+ggplot() + geom_line(aes(x,y), data=mybrace)
+mybrace <- seekBrace(xstart=3, xend=1)
+ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
 To change where the brace is pointing, we change the mid parameter. This is always between 0.25 and 0.75 (even if you type in something smaller or higher), with 0.5 being the default. 
 ``` r
-mybrace <- seekBrace(xstart=3, xend=1, ystart=2, yend= -2, mid=0.3)
-ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
+mybrace <- seekBrace(mid=0.3)
+ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
