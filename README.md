@@ -24,6 +24,7 @@ We can also produce a brace that points sideways instead of up or down. However,
 mybrace <- seekBrace(pointing="side")
 ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
 ```
+<img src="data/brace_right.png"/>
 You can add the geom_line() to your plot of choice to include the brace. Specify its x and y coordinates to put it wherever you want (see below).
 
 ## Custom braces
@@ -36,8 +37,11 @@ ggplot() + geom_line(aes(x,y), data=mybrace)
 mybrace <- seekBrace(xstart=3, xend=1, pointing="side")
 ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
 ```
+<img src="data/brace_down.png"/>
+<img src="data/brace_left.png"/>
 To change where the brace is pointing, we change the mid parameter. This is always between 0.25 and 0.75 (even if you type in something smaller or higher), with 0.5 being the default. 
 ``` r
 mybrace <- seekBrace(mid=0.3)
 ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
+<img src="data/brace_shift.png"/>
