@@ -13,7 +13,7 @@ devtools::install_github("solatar/curlybRaces")
 Load the package and create your brace:
 ``` r
 library(curlybRaces)
-mybrace <- seekkBrace()
+mybrace <- seekBrace()
 ```
 
 Plot the brace. Here we use ggplot:
