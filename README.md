@@ -10,7 +10,6 @@ devtools::install_github("solatar/curlybraces")
 ```
 
 ## Default braces
-
 Load the package, create your first brace and plot it with ggplot2:
 ``` r
 library(curlyBraces, ggplot2)
@@ -20,6 +19,7 @@ ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
 <img src="data/brace_up.png"/>
 We can also produce a brace that points sideways instead of up or down. However, we must then spefify the orientation parameter in ggplot, otherwise our brace will end up as a zickzack line (if for some reason the above already results in a zickzack line for you, specify orientation="x"):
+
 ``` r
 mybrace <- seekBrace(pointing="side")
 ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
