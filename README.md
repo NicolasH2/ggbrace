@@ -32,11 +32,8 @@ To put braces wherever you want in your graph, we can change the x and y coordin
 ``` r
 mybrace <- seekBrace(ystart=2, yend= -2)
 ggplot() + geom_line(aes(x,y), data=mybrace)
-
-mybrace <- seekBrace(xstart=3, xend=1, pointing="side")
-ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
 ```
-<img src="data/brace_down.png"/><img src="data/brace_left.png"/ height="400">
+<img src="data/brace_down.png"/>
 To change where the brace is pointing, we change the mid parameter. This is always between 0.25 and 0.75 (even if you type in something smaller or higher), with 0.5 being the default. 
 
 ``` r
