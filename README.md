@@ -3,14 +3,13 @@
 Wanna draw curly braces into your ggplot or plotly graph? This package provides the function seekBrace(), which outputs a data.frame, ready to be plotted.
 
 ## Installation
-
 Install the culyBraces package from the git repository:
 ``` r
 devtools::install_github("solatar/curlybraces")
 ```
 
 ## Default braces
-Load the package, create your first brace and plot it with ggplot2:
+Load the package, create your first brace and plot it with [ggplot2](https://ggplot2.tidyverse.org/):
 ``` r
 library(curlyBraces, ggplot2)
 
@@ -28,7 +27,6 @@ ggplot() + geom_line(aes(x,y), data=mybrace, orientation="y")
 You can add the geom_line() to your plot of choice to include the brace. Specify its x and y coordinates to put it wherever you want (see below).
 
 ## Custom braces
-
 To put braces wherever you want in your graph, we can change the x and y coordinates of the bracket. This can also change where the bracket is pointing to. If yend is smaller then ystart, the brace will point downwards. If xend is smaller than xstart and parameter="side" is specified, it will point to the left.
 ``` r
 mybrace <- seekBrace(ystart=2, yend= -2)
