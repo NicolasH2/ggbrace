@@ -17,7 +17,7 @@
 #'
 #' mybrace <- seekBrace(xend=5, yend=1, pointing="updown")
 #' ggplot() + geom_line(aes(x,y), data=mybrace, orientation="x")
-seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="side", npoints=100){
+seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="updown", npoints=100){
   if(mid<0.25){
     mid <- 0.25
   }else if(mid>0.75){
@@ -69,6 +69,7 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="sid
   }
 
   mybrace <- do.call(rbind, rounds)
+  mybrace <- mybrace[order(mybrace$x),] #fixes the ggplot-zickzack for the "updown" option
   mybrace
 }
 
