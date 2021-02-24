@@ -1,11 +1,10 @@
 Package: curlyBraces
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Create curly braces in graphs
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Nicolas Huber
+Maintainer: Nicolas Huber <info.huber@aol.de>
+Description: curlyBraces provides a data.frame that can directly be used to plot a curly brace, e.g. in ggplot.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
