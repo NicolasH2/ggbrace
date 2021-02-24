@@ -41,3 +41,9 @@ mybrace <- seekBrace(mid=0.7)
 ggplot() + geom_line(aes(x,y), data=mybrace)
 ```
 <img src="data/brace_shift.png"/>
+
+## Customization via ggplot2
+To change how the brace looks like, simply provide the arguements needed by ggplot. This includes the arguements: size, color and linetype (dashed, dotted, etc.)
+``` r
+ggplot() + geom_line(aes(x,y), curlyBraces::seekBrace(), linetype="dashed", color="red", size=3)
+```
