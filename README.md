@@ -44,7 +44,7 @@ ggplot() + geom_brace(mid=0.7)
 To change how the brace looks like, simply provide the arguements needed by ggplot. This includes all arguements that could be given to geom_path: size, color, linetype, alpha (opacity), lineend and linejoin. The first 3 are examplified here.
 
 ``` r
-ggplot() + geom_brace(linetype="dashed", color="red", size=3, alpha=0.6)
+ggplot() + geom_brace(linetype="dashed", color="blue", size=3, alpha=0.6)
 ```
 <img src="data/parameters.png"/>
 
