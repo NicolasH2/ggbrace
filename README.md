@@ -41,24 +41,21 @@ ggplot() + geom_brace(mid=0.7)
 <img src="data/shifted.png"/>
 
 ## Customization via ggplot2
-To change how the brace looks like, simply provide the arguements needed by ggplot. This includes the arguements: size, color and linetype (dashed, dotted, etc.)
+To change how the brace looks like, simply provide the arguements needed by ggplot. This includes all arguements that could be given to geom_path: size, color, linetype, alpha (opacity), lineend and linejoin. The first 3 are examplified here.
+
+Options for linetype: "solid" (default), "dotted", "dotdash", "twodash", "dashed", "longdash", "blank"
 ``` r
 ggplot() + geom_brace(linetype="dashed", color="red", size=3)
 ```
 <img src="data/parameters.png"/>
 
-If the size is bigger than usual, it might make sense to specify how the ends of the brace look like. This can be specified via the lineend and linejoin options (inherent to the ggplot2's geom_path object). They lead to subtle differences. The defaults are: lineend="butt" and linejoin="round".
+If the size is bigger than usual, it might make sense to specify how the ends of the brace look like. This can be specified via the lineend and linejoin options (inherent to the ggplot2's geom_path object). They lead to subtle differences.
 
-Here are the possible options for lineend (default is "butt"), which influences the ends of the brace.
- And here for linejoin (default is "round"), which influences the pointer.
+Options for lineend: "butt" (default), "square", "round"
+Options for linejoin: "round" (default), "mitre", "bevel"
 ``` r
 ggplot() + geom_brace(size=5, lineend="butt")
-ggplot() + geom_brace(size=5, lineend="square") #similar to butt, but the line does not exactly stop at the defined end
-ggplot() + geom_brace(size=5, linejoin="round")
-
-ggplot() + geom_brace(size=5, linejoin="round")
 ggplot() + geom_brace(size=5, linejoin="mitre")
-ggplot() + geom_brace(size=5, linejoin="bevel") #more or less the same as mitre
 ```
 <img src="data/parameters2.png"/>
 
