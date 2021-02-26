@@ -5,8 +5,6 @@
 #' Imports:
 #' ggplot2
 #'
-#' @inheritParams ggplot2::geom_path
-#' @import ggplot2
 #'
 #' @param xstart number, most left part of the brace
 #' @param xend number, most right part of the brace. If pointing="side" the brace points towards this.
@@ -30,9 +28,9 @@ geom_brace <- function(xstart=0, xend=1, ystart=0, yend=1, mid=0.5, pointing="up
 
   data <- ggbrace::seekBrace(xstart, xend, ystart, yend, mid, pointing, npoints)
 
-  output <- ggplot2::layer(
+  output <- ggplot::layer(
     data=data,
-    mapping=ggplot2::aes(x=x, y=y),
+    mapping=ggplot::aes(x=x, y=y),
     geom="path",
     stat="identity",
     position="identity",
