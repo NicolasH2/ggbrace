@@ -36,7 +36,7 @@ ggplot() + geom_brace(ystart=2, yend= -2)
 To change where the brace is pointing, we change the mid parameter. This is always between 0.25 and 0.75 (even if you type in something smaller or higher), with 0.5 being the default. 
 
 ``` r
-ggplot() + geom_line(mid=0.7)
+ggplot() + geom_brace(mid=0.7)
 ```
 <img src="data/brace_shift.png"/>
 
