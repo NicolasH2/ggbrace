@@ -1,4 +1,4 @@
-# ggBrace
+# ggbrace
 
 Wanna draw curly braces in ggplot? This package provides the function geom_brace(), which gives a nice curly brace.
 
