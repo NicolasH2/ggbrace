@@ -2,3 +2,4 @@
 
 export(geom_brace)
 export(seekBrace)
+import(ggplot2)

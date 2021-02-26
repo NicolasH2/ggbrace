@@ -1,4 +1,4 @@
-Package: curlyBraces
+Package: ggbrace
 Type: Package
 Title: Create curly braces for plots
 Version: 0.1.0

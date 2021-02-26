@@ -30,13 +30,13 @@ seekBrace(
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 }
 \value{
-data.frame with x and y columns that can be used as an input for ggplot or plotly
+data.frame with x and y columns that can be used as an input for ggplot
 }
 \description{
 creates a dataframe for a curly brace
 }
 \examples{
-library(curlyBrace, ggplot2)
+library(ggbrace, ggplot2)
 mybrace <- seekBrace()
 ggplot() + geom_path(aes(x,y), data=mybrace)
 

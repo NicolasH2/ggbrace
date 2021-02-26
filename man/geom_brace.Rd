@@ -29,6 +29,11 @@ geom_brace(
 \item{pointing}{string, either "side" or "updown" (default)}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
+
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
+often aesthetics, used to set an aesthetic to a fixed value, like
+\code{colour = "red"} or \code{size = 3}. They may also be parameters
+to the paired geom/stat.}
 }
 \value{
 ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object
@@ -38,7 +43,8 @@ Imports:
 ggplot2
 }
 \examples{
-library(curlyBrace, ggplot2)
+library(ggbrace)
+library(ggplot2)
 ggplot() + geom_brace()
 
 ggplot() + geom_brace(ystart=-5, pointing="side")
