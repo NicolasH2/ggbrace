@@ -28,9 +28,9 @@ geom_brace <- function(xstart=0, xend=1, ystart=0, yend=1, mid=0.5, pointing="up
 
   data <- ggbrace::seekBrace(xstart, xend, ystart, yend, mid, pointing, npoints)
 
-  output <- ggplot::layer(
+  output <- ggplot2::layer(
     data=data,
-    mapping=ggplot::aes(x=x, y=y),
+    mapping=ggplot2::aes(x=x, y=y),
     geom="path",
     stat="identity",
     position="identity",
