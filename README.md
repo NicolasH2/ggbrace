@@ -1,17 +1,17 @@
-# curlyBraces
+# ggBrace
 
-Wanna draw curly braces into your ggplot or plotly graph? This package provides the function seekBrace(), which outputs a data.frame, ready to be plotted.
+Wanna draw curly braces in ggplot? This package provides the function geom_brace(), which gives a nice curly brace.
 
 ## Installation
-Install the culyBraces package from the git repository:
+Install the ggbrace package from the git repository:
 ``` r
-devtools::install_github("solatar/curlybraces")
+devtools::install_github("solatar/ggbrace")
 ```
 
 ## Default braces
 Load the package, create your first brace in [ggplot2](https://ggplot2.tidyverse.org/):
 ``` r
-library(curlyBraces)
+library(ggbrace)
 library(ggplot2)
 
 ggplot() + geom_brace()
