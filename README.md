@@ -48,7 +48,7 @@ ggplot() + geom_brace(linetype="dashed", color="red", size=3)
 <img src="data/parameters.png"/>
 
 ## Creating a brace data.frame
-If you want to include a brace in a plotly graph, or you just want to edit the brace line a little, you need the data frame the brace is built from. For that you can call the seekBrace() function. It takes the same parameters as the geom_brace() function, except ggplot specifics like color, size, line_type, etc. and produces a data.frame from it. You can use edit this data.frame as you wish and then plug it into a geom_path object to plot it with ggplot.
+If you want more flexibility, you might prefer the data frame the brace is built from. For that you can call the seekBrace() function. It takes the same parameters as the geom_brace() function, except ggplot specifics like color, size, line_type, etc. and produces a data.frame from it. You can use edit this data.frame as you wish and then plug it into a geom_path object to plot it with ggplot.
 ``` r
 mybrace <- seekBrace()
 ggplot() + geom_path(aes(x,y), data=mybrace)
