@@ -55,6 +55,9 @@ ggplot() + geom_brace(size=5, lineend="butt")
 ggplot() + geom_brace(size=5, lineend="square")
 ggplot() + geom_brace(size=5, linejoin="bevel")
 ```
+<img src="data/lineend_butt.png"/>
+<img src="data/lineend_square.png"/>
+<img src="data/lineend_bevel.png"/>
 
  And here for linejoin (default is "round"), which influences the pointer.
 ``` r
@@ -62,6 +65,9 @@ ggplot() + geom_brace(size=5, linejoin="mitre")
 ggplot() + geom_brace(size=5, linejoin="bevel")
 ggplot() + geom_brace(size=5, linejoin="round")
 ```
+<img src="data/linejoin_round.png"/>
+<img src="data/linejoin_mitre.png"/>
+<img src="data/linejoin_bevel.png"/>
 
 ## Creating a brace data.frame
 If you want more flexibility, you might prefer the data frame the brace is built from. For that you can call the seekBrace() function. It takes the same parameters as the geom_brace() function, except ggplot specifics like color, size, line_type, etc. and produces a data.frame from it. You can use edit this data.frame as you wish and then plug it into a geom_path object to plot it with ggplot.
