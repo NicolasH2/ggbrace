@@ -12,7 +12,8 @@
 #' @return data.frame with x and y columns that can be used as an input for ggplot
 #' @export
 #' @examples
-#' library(ggbrace, ggplot2)
+#' library(ggbrace)
+#' library(ggplot2)
 #' mybrace <- seekBrace()
 #' ggplot() + geom_path(aes(x,y), data=mybrace)
 #'
@@ -85,4 +86,4 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
 
   return(output)
 }
-seekBrace()
+
