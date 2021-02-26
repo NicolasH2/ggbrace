@@ -13,7 +13,8 @@
 #' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object
 #' @export
 #' @examples
-#' library(curlyBrace, ggplot2)
+#' library(curlyBrace)
+#' library(ggplot2)
 #' ggplot() + geom_brace()
 #'
 #' ggplot() + geom_brace(ystart=-5, pointing="side")
