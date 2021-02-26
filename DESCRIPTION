@@ -4,7 +4,7 @@ Title: Create curly braces for plots
 Version: 0.1.0
 Author: Nicolas Huber
 Maintainer: Nicolas Huber <info.huber@aold.de>
-Description: Provides functions to create curly braces either directly for ggplot2 or as a data.frame for more flexible use.
+Description: Provides functions to create curly braces either directly for ggplot2 (function geom_brace) or as a data.frame for more flexible use (function seekBrace).
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
