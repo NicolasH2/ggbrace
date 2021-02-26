@@ -27,7 +27,7 @@ ggplot() + geom_brace(pointing="side")
 You can add the geom_line() to your plot of choice to include the brace. Specify its x and y coordinates to put it wherever you want (see below).
 
 ## Custom braces
-To put braces wherever you want in your graph, we can change the x and y coordinates of the bracket. This can also change where the bracket is pointing to. If yend is smaller then ystart, the brace will point downwards. If xend is smaller than xstart and parameter="side" is specified, it will point to the left.
+To put the brace anywhere in your graph, change its x and y coordinates. This can also change where the bracket is pointing to. The brace will always point towards yend, or xend if parameter="side" is specified.
 
 ``` r
 ggplot() + geom_brace(ystart=2, yend= -2)
