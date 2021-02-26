@@ -3,6 +3,9 @@
 #' Imports:
 #' ggplot2
 #'
+#' @inheritParams ggplot2::geom_path
+#' @import ggplot2
+#'
 #' @param xstart number, most left part of the brace
 #' @param xend number, most right part of the brace. If pointing="side" the brace points towards this.
 #' @param ystart number, top end of the brace
@@ -10,6 +13,7 @@
 #' @param mid number, where the pointer is within the bracket space (between 0.25 and 0.75)
 #' @param pointing string, either "side" or "updown" (default)
 #' @param npoints integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.
+#' @param ... any parameters that can be used for geom_path (color, size, linetype, etc.)
 #' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object
 #' @export
 #' @examples
