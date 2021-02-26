@@ -57,9 +57,9 @@ ggplot() + geom_brace(size=5, linejoin="mitre")
 <img src="readme_files/parameters2.png"/>
 
 All possible options for:
-- linetype: "solid" (default), "dotted", "dotdash", "twodash", "dashed", "longdash", "blank"
-- lineend: "butt" (default), "square", "round"
-- linejoin: "round" (default), "mitre", "bevel"
+- linetype: solid (default), dotted, dotdash, twodash, dashed, longdash, blank
+- lineend: butt (default), square, round
+- linejoin: round (default), mitre, bevel
 
 ## Creating a brace data.frame
 If you want more flexibility, you might prefer the data frame the brace is built from. For that you can call the seekBrace() function. It takes the same parameters as the geom_brace() function, except ggplot specifics like color, size, line_type, etc. and produces a data.frame from it. You can use edit this data.frame as you wish and then plug it into a geom_path object to plot it with ggplot.
