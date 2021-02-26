@@ -47,6 +47,22 @@ ggplot() + geom_brace(linetype="dashed", color="red", size=3)
 ```
 <img src="data/parameters.png"/>
 
+If the size is bigger than usual, it might make sense to specify how the ends of the brace look like. This can be specified via the lineend and linejoin options (inherent to the ggplot2's geom_path object). They lead to subtle differences. The defaults are: lineend="butt" and linejoin="round".
+
+Here are the possible options for lineend (default is "butt"), which influences the ends of the brace.
+``` r
+ggplot() + geom_brace(size=5, lineend="butt")
+ggplot() + geom_brace(size=5, lineend="square")
+ggplot() + geom_brace(size=5, linejoin="bevel")
+```
+
+ And here for linejoin (default is "round"), which influences the pointer.
+``` r
+ggplot() + geom_brace(size=5, linejoin="mitre")
+ggplot() + geom_brace(size=5, linejoin="bevel")
+ggplot() + geom_brace(size=5, linejoin="round")
+```
+
 ## Creating a brace data.frame
 If you want more flexibility, you might prefer the data frame the brace is built from. For that you can call the seekBrace() function. It takes the same parameters as the geom_brace() function, except ggplot specifics like color, size, line_type, etc. and produces a data.frame from it. You can use edit this data.frame as you wish and then plug it into a geom_path object to plot it with ggplot.
 ``` r
