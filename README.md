@@ -11,7 +11,8 @@ devtools::install_github("solatar/curlybraces")
 ## Default braces
 Load the package, create your first brace in [ggplot2](https://ggplot2.tidyverse.org/):
 ``` r
-library(curlyBraces, ggplot2)
+library(curlyBraces)
+library(ggplot2)
 
 ggplot() + geom_brace()
 ```
