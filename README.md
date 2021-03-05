@@ -1,6 +1,6 @@
 # ggbrace
 
-Wanna draw curly braces in ggplot? This package provides the function geom_brace(), which gives a nice curly brace.
+An R package that draws highly modifiable curly braces in [ggplot2](https://ggplot2.tidyverse.org/). The brace can easily be modified and added to an existing ggplot object. ggbrace vizualizes the brace using a ggplot2's geom_path layer.
 
 ## Installation
 Install the ggbrace package from the git repository:
@@ -9,7 +9,7 @@ devtools::install_github("solatar/ggbrace")
 ```
 
 ## Default braces
-Load the package, create your first brace in [ggplot2](https://ggplot2.tidyverse.org/):
+Load the package, create your first brace in ggplot2:
 ``` r
 library(ggbrace)
 library(ggplot2)
