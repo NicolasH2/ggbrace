@@ -1,6 +1,8 @@
 Package: ggbrace
 Type: Package
 Title: Create curly braces for plots
+Depends: R (>= 3.6.0)
+Imports: ggplot2 (>= 3.3.1)
 Version: 0.1.0
 Author: Nicolas Huber
 Maintainer: Nicolas Huber <info.huber@aold.de>
