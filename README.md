@@ -3,7 +3,7 @@
 An R package that draws highly modifiable curly braces in [ggplot2](https://ggplot2.tidyverse.org/). The brace can easily be modified and added to an existing ggplot object. ggbrace vizualizes the brace using a ggplot2's geom_path layer.
 
 ## Installation
-Install the ggbrace package from the git repository:
+Install the package from the git repository:
 ``` r
 devtools::install_github("solatar/ggbrace")
 ```
