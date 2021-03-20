@@ -26,15 +26,18 @@
 #' ggplot() + geom_brace(color="red", size=3, linetype="dashed")
 geom_brace <- function(xstart=0, xend=1, ystart=0, yend=1, mid=0.5, pointing="updown", npoints=100, ...){
 
+  #calculate a data.frame with x and y values for plotting the brace
   data <- ggbrace::seekBrace(xstart, xend, ystart, yend, mid, pointing, npoints)
 
+  #plot the brace
   output <- ggplot2::layer(
-    data=data,
-    mapping=ggplot2::aes(x=x, y=y),
-    geom="path",
-    stat="identity",
-    position="identity",
-    show.legend=FALSE,
+    data = data,
+    mapping = ggplot2::aes(x=x, y=y),
+    geom = "path",
+    stat = "identity",
+    position = "identity",
+    show.legend = FALSE,
+    inherit.aes = FALSE,
     params=list(...)
   )
 
