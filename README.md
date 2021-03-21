@@ -9,15 +9,16 @@ devtools::install_github("solatar/ggbrace")
 ```
 
 ## Default braces
-Load the package, create your first brace in ggplot2:
+Load the package, create a brace. You can also add a label.
 ``` r
 library(ggbrace)
 library(ggplot2)
 
 ggplot() + geom_brace()
+ggplot() + geom_brace(label="mylabel") + ylim(0,1.2)
 ```
 
-<img src="readme_files/up.png"/>
+<img src="readme_files/up_and_uplabel.png"/>
 We can also produce a brace that points sideways instead of up or down. However, we must then spefify the orientation parameter in ggplot, otherwise our brace will end up as a zickzack line (if for some reason the above already results in a zickzack line for you, specify orientation="x"):
 
 ``` r
@@ -40,7 +41,7 @@ ggplot() + geom_brace(mid=0.7)
 ```
 <img src="readme_files/shifted.png"/>
 
-## Customization via ggplot2
+## Further brace customization
 To change how the brace looks like, simply provide the arguements needed by ggplot. This includes all arguements that could be given to geom_path: size, color, linetype, alpha (opacity), lineend and linejoin. The first 3 are examplified here.
 
 ``` r
@@ -61,9 +62,14 @@ All possible options for:
 - lineend: butt (default), square, round
 - linejoin: round (default), mitre, bevel
 
-## Creating a brace data.frame
-If you want more flexibility, you might prefer the data frame the brace is built from. For that you can call the seekBrace() function. It takes the same parameters as the geom_brace() function, except ggplot specifics like color, size, line_type, etc. and produces a data.frame from it. You can use edit this data.frame as you wish and then plug it into a geom_path object to plot it with ggplot.
+## Label customization
+
+The label can be customized with the arguement labelsize and labelcolor, as well as any arguements that could be used for ggplot's annotate function, such as fontface or family.
+
 ``` r
-mybrace <- seekBrace()
-ggplot() + geom_path(aes(x,y), data=mybrace)
+ggplot() + 
+  geom_brace(label="mylabel", labelcolor="red", fontface="bold") + 
+  ylim(0,1.2)
 ```
+
+<img src="readme_files/custom_text.png"/>
