@@ -19,11 +19,9 @@ ggplot() + geom_brace(label="mylabel") + ylim(0,1.2)
 ```
 
 <img src="readme_files/up_and_uplabel.png"/>
-We can also produce a brace that points sideways instead of up or down. However, we must then spefify the orientation parameter in ggplot, otherwise our brace will end up as a zickzack line (if for some reason the above already results in a zickzack line for you, specify orientation="x"):
-
-To put the brace anywhere in your graph, change its x and y coordinates. This can also change where the bracket is pointing to. The brace will always point towards yend, or xend if parameter="side" is specified.
-
-To change where the brace is pointing, we change the mid parameter. This is always between 0.25 and 0.75 (even if you type in something smaller or higher), with 0.5 being the default. 
+For a brace pointing sideways, specify "pointing="side".
+To invert the brace, define x and y coordinates so that the start is a higher number than the end.
+To change the pointer position within the brace, change the mid parameter. This is always between 0.25 and 0.75.
 ``` r
 ggplot() + geom_brace(pointing="side")
 ggplot() + geom_brace(ystart=2, yend= -2)
