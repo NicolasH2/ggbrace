@@ -20,7 +20,9 @@ ggplot() + geom_brace(label="mylabel") + ylim(0,1.2)
 
 <img src="readme_files/up_and_uplabel.png"/>
 For a brace pointing sideways, specify "pointing="side".
+
 To invert the brace, define x and y coordinates so that the start is a higher number than the end.
+
 To change the pointer position within the brace, change the mid parameter. This is always between 0.25 and 0.75.
 ``` r
 ggplot() + geom_brace(pointing="side")
