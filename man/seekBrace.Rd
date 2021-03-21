@@ -2,7 +2,7 @@
 % Please edit documentation in R/seekBrace.R
 \name{seekBrace}
 \alias{seekBrace}
-\title{creates a dataframe for a curly brace}
+\title{dataframe for a curly brace}
 \usage{
 seekBrace(
   xstart = 0,
@@ -23,20 +23,21 @@ seekBrace(
 
 \item{yend}{number, bottom end of the brace. If pointing="updown" (default) the brace points towards this.}
 
-\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
+\item{mid}{number between 0.25 and 0.75, defining the relative position of the pointer.}
 
 \item{pointing}{string, either "side" or "updown" (default)}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 }
 \value{
-data.frame with x and y columns that can be used as an input for ggplot
+data.frame with columns x and y, to be used as an input for ggplot's geom_path
 }
 \description{
-creates a dataframe for a curly brace
+dataframe for a curly brace
 }
 \examples{
-library(ggbrace, ggplot2)
+library(ggbrace)
+library(ggplot2)
 mybrace <- seekBrace()
 ggplot() + geom_path(aes(x,y), data=mybrace)
 

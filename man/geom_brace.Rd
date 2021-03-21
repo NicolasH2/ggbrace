@@ -11,6 +11,9 @@ geom_brace(
   yend = 1,
   mid = 0.5,
   pointing = "updown",
+  label = NULL,
+  labelsize = 5,
+  labelcolor = "black",
   npoints = 100,
   ...
 )
@@ -28,6 +31,12 @@ geom_brace(
 
 \item{pointing}{string, either "side" or "updown" (default)}
 
+\item{label}{string, a custom text to be displayed at the brace.}
+
+\item{labelsize}{number, changing the font size of the label. Only takes effect if the parameter "label" was defined.}
+
+\item{labelcolor}{string, defining the color of the label. Only takes effect if the parameter "label" was defined.}
+
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
@@ -36,7 +45,7 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 to the paired geom/stat.}
 }
 \value{
-ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object
+ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (annotate) is added.
 }
 \description{
 Imports:

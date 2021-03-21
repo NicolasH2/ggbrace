@@ -1,15 +1,13 @@
-# devtools::document()
-
-#' creates a dataframe for a curly brace
+#' dataframe for a curly brace
 #'
 #' @param xstart number, most left part of the brace
 #' @param xend number, most right part of the brace. If pointing="side" the brace points towards this.
 #' @param ystart number, top end of the brace
 #' @param yend number, bottom end of the brace. If pointing="updown" (default) the brace points towards this.
-#' @param mid number, where the pointer is within the bracket space (between 0.25 and 0.75)
+#' @param mid number between 0.25 and 0.75, defining the relative position of the pointer.
 #' @param pointing string, either "side" or "updown" (default)
 #' @param npoints integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.
-#' @return data.frame with x and y columns that can be used as an input for ggplot
+#' @return data.frame with columns x and y, to be used as an input for ggplot's geom_path
 #' @export
 #' @examples
 #' library(ggbrace)
@@ -27,9 +25,8 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
   }else if(mid>0.75){
     mid <- 0.75
   }
-  #making sure that it is a multiple of 4
+  #making sure that the number of points is a multiple of 4
   npoints <- round(npoints/4)*4
-  #==========================================================
   #==========================================================
   #==Circle calculations==#
   radiusX <- (xend-xstart)/2
@@ -50,8 +47,8 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
     return( data.frame(x=x+radiusX*cos(positions), y=y+radiusY*sin(positions)) )
   }
   #==========================================================
-  #==========================================================
-  #the list items were named with a brace pointing to the right or up
+  #create brace data points by calculating 4 quarter circles
+  #note: list items names reflect a brace pointing either to the right or up
   if(pointing %in% "side"){
     rounds <- list(
       data.frame(x=xstart,y=yend),
@@ -73,7 +70,6 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
       data.frame(x=xend,y=ystart)
     )
   }
-  #==========================================================
   #==========================================================
   output <- do.call(rbind, rounds)
 
