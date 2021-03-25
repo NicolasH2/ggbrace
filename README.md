@@ -5,7 +5,7 @@ An R package that draws highly modifiable curly braces in [ggplot2](https://ggpl
 ## Installation
 Install the package from the git repository:
 ``` r
-devtools::install_github("solatar/ggbrace")
+devtools::install_github("nicolash2/ggbrace")
 ```
 
 ## Default braces
