@@ -34,12 +34,12 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
 
   if(pointing %in% "side"){
     radiusY <- radiusY/4
-    ymiddle <- (yend+ystart)*mid
+    ymiddle <- (yend-ystart)*mid + ystart
     xmiddle <- (xend+xstart)*.5
   }else if(pointing %in% "updown"){
     radiusX <- radiusX/4
     ymiddle <- (yend+ystart)*.5
-    xmiddle <- (xend+xstart)*mid
+    xmiddle <- (xend-xstart)*mid + xstart
   }
   #function to create a circle (of which only quarters will be used later)
   circle <- function(x=0,y=0){
