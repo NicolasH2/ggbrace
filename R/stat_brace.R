@@ -39,7 +39,8 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, addlabels=T,
   added_labels <- NULL #is set to NULL first, so if no labels are defined, NULL will be added to the braces
 
   #optional labels
-  if(addlabels){
+  if(!is.null(mapping)){
+    if(names(mapping) %in% "label"){
     # decide the vjust and hjust for the text
     approx_rotate <- as.character(round(rotate))
     txtvjust <- switch(approx_rotate,
@@ -63,6 +64,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, addlabels=T,
                     ...)
     )
     mapping$label <- NULL #delete the label part from the mapping parameter so as to not raise a warning when plotting the brace
+    }
   }
 
   #plot braces
