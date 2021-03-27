@@ -7,8 +7,8 @@ An R package that draws highly modifiable curly braces in [ggplot2](https://ggpl
 Table of contents:
 
 - [Installation](#Installation)
-- [Single Brace](#Single-Brace)
-- [Data-oriented Braces](#Data-oriented-Braces)
+- [Single Brace](#Single-Brace:-geom_brace)
+- [Data-oriented Braces](#Data-oriented-Braces:-stat_brace)
 - [Brace Customization](#Brace-Customization)
 - [Label Customization](#Label-Customization)
 
@@ -18,7 +18,7 @@ Install the package from the git repository:
 devtools::install_github("nicolash2/ggbrace")
 ```
 
-# Single Brace
+# Single Brace: geom_brace
 Load the package, create a brace. You can also add a label.
 ``` r
 library(ggbrace)
@@ -42,7 +42,7 @@ ggplot() + geom_brace(mid=0.7) #shift the brace pointer
 ```
 <img src="readme_files/default_braces.png"/>
 
-# Data-oriented Braces
+# Data-oriented Braces: stat_brace
 
 Instead of defining the brace location ourself, we can use the stat_brace function to generate braces that automatically indicate groups of data points. In these simple examples, we divide the mtcars dataset by the "am" column. The braces will automatically define the borders of the groups. With the rotate arguement we can get braces that point left, right or down. We can also add text, by specifying label in the mapping (aes) arguement.
 
