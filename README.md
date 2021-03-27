@@ -7,10 +7,10 @@ An R package that draws highly modifiable curly braces in [ggplot2](https://ggpl
 Table of contents:
 
 - [Installation](#Installation)
-- [Single Brace](#Single Brace)
-- [Data-oriented Braces](#Data-oriented Braces)
-- [Brace Customization](#Brace Customization)
-- [Label Customization](#Label Customization)
+- [Single Brace](#Single-Brace)
+- [Data-oriented Braces](#Data-oriented-Braces)
+- [Brace Customization](#Brace-Customization)
+- [Label Customization](#Label-Customization)
 
 # Installation
 Install the package from the git repository:
