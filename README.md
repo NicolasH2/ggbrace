@@ -2,13 +2,23 @@
 
 An R package that draws highly modifiable curly braces in [ggplot2](https://ggplot2.tidyverse.org/). The brace can easily be modified and added to an existing ggplot object. ggbrace vizualizes the brace using a ggplot2's geom_path layer.
 
-## Installation
+<img src="readme_files/stabrace3.png"/>
+
+Table of contents:
+
+- [Installation](#Installation)
+- [Single Brace](#Single Brace)
+- [Data-oriented Braces](#Data-oriented Braces)
+- [Brace Customization](#Brace Customization)
+- [Label Customization](#Label Customization)
+
+# Installation
 Install the package from the git repository:
 ``` r
 devtools::install_github("nicolash2/ggbrace")
 ```
 
-## Default braces
+# Single Brace
 Load the package, create a brace. You can also add a label.
 ``` r
 library(ggbrace)
@@ -32,7 +42,30 @@ ggplot() + geom_brace(mid=0.7) #shift the brace pointer
 ```
 <img src="readme_files/default_braces.png"/>
 
-## Custom braces
+# Data-oriented Braces
+
+Instead of defining the brace location ourself, we can use the stat_brace function to generate braces that automatically indicate groups of data points. In these simple examples, we divide the mtcars dataset by the "am" column. The braces will automatically define the borders of the groups. With the rotate arguement we can get braces that point left, right or down.
+
+``` r
+ggplot(mtcars, aes(mpg, wt, color=factor(am))) + 
+  geom_point() +
+  stat_brace()
+
+ggplot(mtcars, aes(mpg, wt, color=factor(am))) + 
+  geom_point() +
+  stat_brace(rotate=90)
+
+ggplot(mtcars, aes(mpg, wt, color=factor(am))) + 
+  geom_point() + 
+  facet_wrap(~vs) + 
+  stat_brace(rotate=90, aes(label=factor(am)))
+```
+
+<img src="readme_files/stabrace1.png"/>
+<img src="readme_files/stabrace2.png"/>
+<img src="readme_files/stabrace3.png"/>
+
+# Brace Customization
 
 To change how the brace looks like, simply provide the arguements needed by ggplot. This includes all arguements that could be given to geom_path: size, color, linetype, alpha (opacity), lineend and linejoin. The first 3 are examplified here.
 
@@ -54,7 +87,7 @@ All possible options for:
 - lineend: butt (default), square, round
 - linejoin: round (default), mitre, bevel
 
-## Label customization
+# Label Customization
 
 The label can be customized with the arguement labelsize and labelcolor, as well as any arguements that could be used for ggplot's annotate function, such as fontface or family.
 
