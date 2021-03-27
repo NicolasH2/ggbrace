@@ -1,11 +1,7 @@
 #' dataframe for a curly brace label
 #'
-#' @param xstart number, most left part of the brace
-#' @param xend number, most right part of the brace. If pointing="side" the brace points towards this.
-#' @param ystart number, top end of the brace
-#' @param yend number, bottom end of the brace. If pointing="updown" (default) the brace points towards this.
-#' @param mid number between 0.25 and 0.75, defining the relative position of the pointer.
-#' @param pointing string, either "side" or "updown" (default)
+#' @inheritParams geom_brace
+#'
 #' @return data.frame with columns x and y, to be used as an input for ggplot's geom_text
 #' @export
 #' @examples

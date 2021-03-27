@@ -8,36 +8,61 @@ stat_brace(
   mapping = NULL,
   data = NULL,
   rotate = 0,
-  addlabels = T,
+  textsize = 5,
   distance = NULL,
   outerstart = NULL,
   width = NULL,
   mid = NULL,
   npoints = 100,
-  textsize = 5,
   ...
 )
 }
 \arguments{
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
+\code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
+default), it is combined with the default mapping at the top level of the
+plot. You must supply \code{mapping} if there is no plot mapping.}
+
+\item{data}{The data to be displayed in this layer. There are three
+options:
+
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
+
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
+
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame}, and
+will be used as the layer data. A \code{function} can be created
+from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
+
 \item{rotate}{integer, either 0, 90, 180 or 270 to indicate if the braces should point up, right, down or left respectively}
 
-\item{addlabels}{boolean, should labels be displayed?}
+\item{textsize}{number, regulates text size}
 
-\item{mid}{number between 0.25 and 0.75, defining the relative position of the pointer.}
+\item{distance}{number, regulates how far away the brace is from the last data point (individually for each group)}
+
+\item{outerstart}{number, overwrites distance and provides one coordinate for all braces}
+
+\item{width}{number, regulates how wide the braces are}
+
+\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 
-\item{ystart}{number, top end of the brace}
-
-\item{yend}{number, bottom end of the brace. If pointing="updown" (default) the brace points towards this.}
-
-\item{pointing}{string, either "side" or "updown" (default)}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
+often aesthetics, used to set an aesthetic to a fixed value, like
+\code{colour = "red"} or \code{size = 3}. They may also be parameters
+to the paired geom/stat.}
 }
 \value{
 ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (geom_text) is added.
 }
 \description{
-create curly braces as a layer in ggplot
+Imports:
+ggplot2
 }
 \examples{
 library(ggbrace)

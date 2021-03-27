@@ -1,16 +1,19 @@
 
 #' create curly braces as a layer in ggplot
 #'
-#' @inheritParams ggplot2::path
-#' @inheritParams ggplot2::text
+#' Imports:
+#' ggplot2
+#'
+#' @inheritParams geom_brace
+#' @inheritParams ggplot2::geom_path
+#' @inheritParams ggplot2::geom_text
+#' @import ggplot2
 #'
 #' @param rotate integer, either 0, 90, 180 or 270 to indicate if the braces should point up, right, down or left respectively
-#' @param addlabels boolean, should labels be displayed?
-#' @param ystart number, top end of the brace
-#' @param yend number, bottom end of the brace. If pointing="updown" (default) the brace points towards this.
-#' @param mid number between 0.25 and 0.75, defining the relative position of the pointer.
-#' @param pointing string, either "side" or "updown" (default)
-#' @param npoints integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.
+#' @param textsize number, regulates text size
+#' @param distance number, regulates how far away the brace is from the last data point (individually for each group)
+#' @param outerstart number, overwrites distance and provides one coordinate for all braces
+#' @param width number, regulates how wide the braces are
 #' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (geom_text) is added.
 #' @export
 #' @examples
@@ -21,9 +24,8 @@
 #'   facet_wrap(~vs) +
 #'   stat_brace(rotate=90, aes(label=factor(am)))
 #'
-stat_brace <- function(mapping = NULL, data = NULL, rotate=0, addlabels=T,
+stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
                        distance=NULL, outerstart=NULL, width=NULL, mid=NULL, npoints=100,
-                       textsize = 5,
                        ...) {
   #set variables for brace direction
   pointing <- ifelse(rotate==90 | rotate==270, "side", "updown") #should the brace point to the side?
@@ -61,6 +63,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, addlabels=T,
       position = "identity", show.legend = FALSE, inherit.aes = TRUE,
       params = list(vjust=txtvjust,
                     hjust=txthjust,
+                    size=textsize,
                     ...)
     )
     mapping$label <- NULL #delete the label part from the mapping parameter so as to not raise a warning when plotting the brace

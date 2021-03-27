@@ -23,7 +23,7 @@ seekBrace(
 
 \item{yend}{number, bottom end of the brace. If pointing="updown" (default) the brace points towards this.}
 
-\item{mid}{number between 0.25 and 0.75, defining the relative position of the pointer.}
+\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
 
 \item{pointing}{string, either "side" or "updown" (default)}
 
