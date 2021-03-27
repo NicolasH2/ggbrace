@@ -2,3 +2,5 @@
 
 export(geom_brace)
 export(seekBrace)
+export(seekBraceLabel)
+export(stat_brace)
