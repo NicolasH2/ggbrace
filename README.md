@@ -45,6 +45,7 @@ ggplot() + geom_brace(mid=0.7) #shift the brace pointer
 # Data-oriented Braces: stat_brace
 
 Instead of defining the brace location ourself, we can use the stat_brace function to generate braces that automatically indicate groups of data points. In these simple examples, we divide the mtcars dataset by the "am" column. The braces will automatically define the borders of the groups. With the rotate arguement we can get braces that point left, right or down. We can also add text, by specifying label in the mapping (aes) arguement.
+Note that the brace pointer and the label will be at the data median, unless the user specifies the mid arguement (e.g. mid=0.5 to always be in the middle of the brace).
 
 ``` r
 ggplot(mtcars, aes(mpg, wt, color=factor(am))) + 
