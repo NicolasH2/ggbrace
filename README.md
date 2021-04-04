@@ -68,6 +68,8 @@ ggplot(mtcars, aes(mpg, wt, color=factor(am))) +
 <img src="readme_files/statbrace2.png"/>
 <img src="readme_files/statbrace3.png"/>
 
+Note: in this example we used the color arguement to separate groups. If you want to have separate braces for different groups but without making them colorful, use `color=factor(am)` instead of `group=factor(am)`. You can then still choose a color by defining e.g. `color="blue"` outside the mapping.
+
 # Outside of plotting area
 
 To vizualize the brace outside of the plotting area, we can simply use two ggplot2 functions. `coord_cartesian` needs to be mentioned with x and/or y range of the plotting area and the parameter `clip="off"` to allow plotting of objects outside of that area. Secondly, within the `theme` function, `plot.margin` needs to be set to expand outside area. This happens with 4 numbers (above, right, below, below, left).
