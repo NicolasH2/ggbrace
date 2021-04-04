@@ -68,7 +68,7 @@ ggplot(mtcars, aes(mpg, wt, color=factor(am))) +
 <img src="readme_files/statbrace2.png"/>
 <img src="readme_files/statbrace3.png"/>
 
-Note: in this example we used the color arguement to separate groups. If you want to have separate braces for different groups but without making them colorful, use `color=factor(am)` instead of `group=factor(am)`. You can then still choose a color by defining e.g. `color="blue"` outside the mapping.
+Note: in this example we used the color arguement to separate groups. If you want to have separate braces for different groups but without making them colorful, use `group=factor(am)` instead of `color=factor(am)`. You can then still choose a color by defining e.g. `color="blue"` outside the mapping.
 
 # Outside of plotting area
 
