@@ -11,7 +11,9 @@ geom_brace(
   yend = 1,
   mid = 0.5,
   pointing = "updown",
+  bending = NULL,
   label = NULL,
+  labeldistance = NULL,
   labelsize = 5,
   labelcolor = "black",
   npoints = 100,
@@ -31,7 +33,11 @@ geom_brace(
 
 \item{pointing}{string, either "side" or "updown" (default)}
 
+\item{bending}{number, sets one value for all braces for how much the curves of the braces are bent (the higher, the more round). If not specified, the curves will be defined by the bracelength. Note that if too high, the brace will show unwanted zick-zack lines.}
+
 \item{label}{string, a custom text to be displayed at the brace.}
+
+\item{labeldistance}{number, distance of the label to the brace pointer}
 
 \item{labelsize}{number, changing the font size of the label. Only takes effect if the parameter "label" was defined.}
 

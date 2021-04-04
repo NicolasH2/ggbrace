@@ -31,16 +31,16 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
   #set variables for brace direction
   pointing <- ifelse(rotate==90 | rotate==270, "side", "updown") #should the brace point to the side?
   flip <- ifelse(rotate==180 | rotate==270, TRUE, FALSE) #should the pointing direction be flipped?
-  
+
   #calculate coordinates for braces and labels
   StatBraceAndLabel <- .funStatBrace(pointing=pointing, flip=flip,
                                      distance=distance, outerstart=outerstart, #outerstart will overwrite distance, if specified
                                      width=width, mid=mid, bending=bending, npoints=npoints)
   StatBrace <- StatBraceAndLabel[[1]] #first list item contains coordinates for braces
   StatBraceLabel <- StatBraceAndLabel[[2]] #second list item contains coordinates for labels
-  
+
   added_labels <- NULL #is set to NULL first, so if no labels are defined, NULL will be added to the braces
-  
+
   #optional labels
   if(!is.null(mapping)){
     if(any(names(mapping) %in% "label")){
@@ -56,7 +56,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
                          "180" = 0.5,
                          "90" = 0,
                          "270" = 1)
-      
+
       # plot labels
       added_labels <- ggplot2::layer(
         stat = StatBraceLabel,
@@ -70,7 +70,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
       mapping$label <- NULL #delete the label part from the mapping parameter so as to not raise a warning when plotting the brace
     }
   }
-  
+
   #plot braces
   output <- ggplot2::layer(
     stat = StatBrace,
@@ -78,10 +78,10 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
     position = "identity", show.legend = FALSE, inherit.aes = TRUE,
     params = list(...)
   )
-  
+
   # add labels to the braces
   output <- c(output, added_labels)
-  
+
   return(output)
 }
 
@@ -89,7 +89,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
 .subcalc <- function(x, y, distance, width, pointing, flip, outerstart, mid, bending, npoints){
   xrange <- range(x, na.rm = TRUE)
   yrange <- range(y, na.rm = TRUE)
-  
+
   #set parameters for the labels
   if(pointing %in% "updown"){
     if(flip) yrange <- rev(yrange) #reverse the order if the brace is flipped (i.e. 180 or 270 degrees)
@@ -108,53 +108,53 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
     xrange <- c(outerstart,
                 outerstart + width )
   }
-  
+
   #get data.frame for brace
   brace <- seekBrace(xstart = xrange[1], xend = xrange[2],
                      ystart = yrange[1], yend = yrange[2],
                      pointing = pointing, mid = mid, bending=bending, npoints = npoints)
-  
+
   #get data.frame for labels
   bracelabel <- seekBraceLabel(xstart = xrange[1], xend = xrange[2],
                                ystart = yrange[1], yend = yrange[2],
                                pointing = pointing, mid = mid)
-  
+
   return(list(brace, bracelabel))
 }
 
 #returns ggproto objects for the braces and labels. Their data.frames are taken from the .subcalc function.
 .funStatBrace <- function(distance, width, pointing, flip, outerstart, mid, bending, npoints){
-  
+
   #calculate brace coordinates via .subcalc
   StatBrace <- ggproto("StatBrace", Stat,
                        required_aes = c("x", "y"),
-                       
+
                        compute_group = function(data, scales) {
                          x <- data$x
                          y <- data$y
                          brace <- .subcalc(x = x, y = y,
                                            distance = distance, outerstart = outerstart, width = width,
                                            pointing = pointing, flip = flip, mid = mid, bending=bending, npoints = npoints)[[1]]
-                         
+
                          return(brace)
                        }
   )
-  
+
   #calculate label coordinates via .subcalc
   StatBraceLabel <- ggproto("StatBraceLabel", Stat,
                             required_aes = c("x", "y"),
-                            
+
                             compute_group = function(data, scales) {
                               x <- data$x
                               y <- data$y
                               bracelabel <- .subcalc(x = x, y = y,
                                                      distance = distance, outerstart = outerstart, width = width,
                                                      pointing = pointing, flip = flip, mid = mid, bending=bending, npoints = npoints)[[2]]
-                              
+
                               return(bracelabel)
                             }
   )
-  
+
   return(list(StatBrace, StatBraceLabel))
 }
 

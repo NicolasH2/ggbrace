@@ -11,6 +11,7 @@ seekBrace(
   yend = 5,
   mid = 0.5,
   pointing = "updown",
+  bending = NULL,
   npoints = 100
 )
 }
@@ -26,6 +27,8 @@ seekBrace(
 \item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
 
 \item{pointing}{string, either "side" or "updown" (default)}
+
+\item{bending}{number, sets one value for all braces for how much the curves of the braces are bent (the higher, the more round). If not specified, the curves will be defined by the bracelength. Note that if too high, the brace will show unwanted zick-zack lines.}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 }

@@ -15,6 +15,7 @@
 #' @param mid number, where the pointer is within the bracket space (between 0.25 and 0.75)
 #' @param bending number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines
 #' @param pointing string, either "side" or "updown" (default)
+#' @param bending number, sets one value for all braces for how much the curves of the braces are bent (the higher, the more round). If not specified, the curves will be defined by the bracelength. Note that if too high, the brace will show unwanted zick-zack lines.
 #' @param label string, a custom text to be displayed at the brace.
 #' @param labeldistance number, distance of the label to the brace pointer
 #' @param labelsize number, changing the font size of the label. Only takes effect if the parameter "label" was defined.
@@ -31,15 +32,15 @@
 #'
 #' ggplot() + geom_brace(color="red", size=3, linetype="dashed")
 geom_brace <- function(
-  xstart=0, xend=1, ystart=0, yend=1, mid=0.5, pointing="updown",
+  xstart=0, xend=1, ystart=0, yend=1, mid=0.5, pointing="updown", bending=NULL,
   label=NULL, labeldistance=NULL, labelsize=5, labelcolor="black",
   npoints=100,
   ...
 ){
-  
+
   #calculate a data.frame with x and y values for plotting the brace
   data <- ggbrace::seekBrace(xstart, xend, ystart, yend, mid, pointing, npoints)
-  
+
   #plot the brace
   output <- ggplot2::layer(
     data = data,
@@ -51,7 +52,7 @@ geom_brace <- function(
     inherit.aes = FALSE,
     params=list(...)
   )
-  
+
   #label annotation at the same position as the brace pointer
   if(!is.null(label)){
     #for text placement, the mid value has to have the same limits as the brace pointer
@@ -88,6 +89,6 @@ geom_brace <- function(
     #combine brace and label
     output <- list(output, txt)
   }
-  
+
   return(output)
 }
