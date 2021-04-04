@@ -92,21 +92,19 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
 
   #set parameters for the labels
   if(pointing %in% "updown"){
-    if(flip) yrange <- rev(yrange) #reverse the order if the brace is flipped (i.e. 180 or 270 degrees)
     if(is.null(mid)) mid <- (median(x) - min(xrange)) / abs(diff(xrange)) #if brace middle is not defined it is set to the median of the values
     if(is.null(distance)) distance <- diff(yrange) / 5 #if distance is not defined, it is set automatically
     if(is.null(outerstart)) outerstart <- yrange[2] + distance #if autostart is not defined, it is set automatically
     if(is.null(width)) width <- diff(yrange) / 2 #if brace width is not defined, it is set automatically
-    yrange <- c(outerstart,
-                outerstart + width )
+    yrange <- c(outerstart, outerstart + width )
+    if(flip) yrange <- rev(yrange) #reverse the order if the brace is flipped (i.e. 180 or 270 degrees)
   }else{
-    if(flip) xrange <- rev(xrange)
     if(is.null(mid)) mid <- (median(y) - min(yrange)) / abs(diff(yrange))
     if(is.null(distance)) distance <- diff(xrange) / 5
     if(is.null(outerstart)) outerstart <- xrange[2] + distance
     if(is.null(width)) width <- diff(xrange) / 2
-    xrange <- c(outerstart,
-                outerstart + width )
+    xrange <- c(outerstart, outerstart + width )
+    if(flip) xrange <- rev(xrange)
   }
 
   #get data.frame for brace
