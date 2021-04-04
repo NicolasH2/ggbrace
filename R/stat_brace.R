@@ -42,7 +42,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
 
   #optional labels
   if(!is.null(mapping)){
-    if(names(mapping) %in% "label"){
+    if(any(names(mapping) %in% "label")){
     # decide the vjust and hjust for the text
     approx_rotate <- as.character(round(rotate))
     txtvjust <- switch(approx_rotate,
