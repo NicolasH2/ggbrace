@@ -110,7 +110,7 @@ All possible options for:
 
 # Label Customization
 
-The label can be customized with the arguement labelsize and labelcolor, as well as any arguements that could be used for ggplot's annotate function, such as fontface or family.
+The label can be customized using the `labelsize` and `labelcolor` arguments as well as any arguements taken by `ggplot2`'s `annotate` function, such as `fontface` or `family`.
 
 ``` r
 ggplot() + 
