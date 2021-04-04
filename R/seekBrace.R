@@ -12,8 +12,8 @@
 #'
 #' mybrace <- seekBrace(pointing="side")
 #' ggplot() + geom_path(aes(x,y), data=mybrace)
-seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="updown", bending=NULL, npoints=100){
-  
+seekBrace <- function(xstart=0, xend=1, ystart=0, yend=1, mid=0.5, pointing="updown", bending=NULL, npoints=100){
+
   if(!pointing %in% c("updown","side")) stop("error: select either ’side’ or ’updown’ for the pointing arguement")
   if(mid<0.25){
     mid <- 0.25
@@ -26,15 +26,15 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
   #==Circle calculations==#
   radiusX <- (xend-xstart)/2
   radiusY <- (yend-ystart)/2
-  
+
   if(pointing %in% "side"){
     radiusY <- radiusY/4
     if(!is.null(bending)) radiusY <- bending
     ymiddle <- (yend-ystart)*mid + ystart
     xmiddle <- (xend+xstart)*.5
   }else if(pointing %in% "updown"){
-    if(!is.null(bending)) radiusX <- bending
     radiusX <- radiusX/4
+    if(!is.null(bending)) radiusX <- bending
     ymiddle <- (yend+ystart)*.5
     xmiddle <- (xend-xstart)*mid + xstart
   }
@@ -69,13 +69,13 @@ seekBrace <- function(xstart=0, xend=1, ystart=0, yend=5, mid=0.5, pointing="upd
   }
   #==========================================================
   output <- do.call(rbind, rounds)
-  
+
   #fix the ggplot-zickzack for the "updown" option
   output <- switch(pointing,
                    "updown"=output[order(output$x),],
                    "side"=output[order(output$y),]
   )
   rownames(output) <- NULL
-  
+
   return(output)
 }

@@ -39,7 +39,8 @@ geom_brace <- function(
 ){
 
   #calculate a data.frame with x and y values for plotting the brace
-  data <- ggbrace::seekBrace(xstart, xend, ystart, yend, mid, pointing, npoints)
+  data <- ggbrace::seekBrace(xstart = xstart, xend = xend, ystart = ystart, yend = yend,
+                    mid = mid, pointing = pointing, npoints = npoints, bending = bending)
 
   #plot the brace
   output <- ggplot2::layer(

@@ -8,7 +8,7 @@ seekBrace(
   xstart = 0,
   xend = 1,
   ystart = 0,
-  yend = 5,
+  yend = 1,
   mid = 0.5,
   pointing = "updown",
   bending = NULL,
