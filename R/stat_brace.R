@@ -10,8 +10,6 @@
 #' @import ggplot2
 #'
 #' @param rotate integer, either 0, 90, 180 or 270 to indicate if the braces should point up, right, down or left respectively
-#' @param textsize number, regulates text size
-#' @param distance number, regulates how far away the brace is from the last data point (individually for each group)
 #' @param outerstart number, overwrites distance and provides one coordinate for all braces
 #' @param width number, regulates how wide the braces are
 #' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (geom_text) is added.
@@ -24,9 +22,9 @@
 #'   facet_wrap(~vs) +
 #'   stat_brace(rotate=90, aes(label=factor(am)))
 #'
-stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
-                       distance=NULL, outerstart=NULL, width=NULL, mid=NULL, bending=NULL,
-                       npoints=100,
+stat_brace <- function(mapping = NULL, data = NULL, rotate=0, labelsize = 5,
+                       labeldistance=NULL, labelcolor=NULL, outerstart=NULL, width=NULL, mid=NULL, bending=NULL,
+                       npoints=100, inherit.aes=TRUE,
                        ...) {
   #set variables for brace direction
   pointing <- ifelse(rotate==90 | rotate==270, "side", "updown") #should the brace point to the side?
@@ -34,7 +32,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
 
   #calculate coordinates for braces and labels
   StatBraceAndLabel <- .funStatBrace(pointing=pointing, flip=flip,
-                                     distance=distance, outerstart=outerstart, #outerstart will overwrite distance, if specified
+                                     distance=labeldistance, outerstart=outerstart, #outerstart will overwrite distance, if specified
                                      width=width, mid=mid, bending=bending, npoints=npoints)
   StatBrace <- StatBraceAndLabel[[1]] #first list item contains coordinates for braces
   StatBraceLabel <- StatBraceAndLabel[[2]] #second list item contains coordinates for labels
@@ -61,12 +59,13 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
       added_labels <- ggplot2::layer(
         stat = StatBraceLabel,
         data = data,  mapping = mapping, geom = "text",
-        position = "identity", show.legend = FALSE, inherit.aes = TRUE,
+        position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
         params = list(vjust=txtvjust,
                       hjust=txthjust,
-                      size=textsize,
+                      size=labelsize,
                       ...)
       )
+      if(!is.null(labelcolor)) added_labels$aes_params[["colour"]] <- labelcolor
       mapping$label <- NULL #delete the label part from the mapping parameter so as to not raise a warning when plotting the brace
     }
   }
@@ -75,7 +74,7 @@ stat_brace <- function(mapping = NULL, data = NULL, rotate=0, textsize = 5,
   output <- ggplot2::layer(
     stat = StatBrace,
     data = data, mapping = mapping, geom = "path",
-    position = "identity", show.legend = FALSE, inherit.aes = TRUE,
+    position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
     params = list(...)
   )
 

@@ -8,13 +8,15 @@ stat_brace(
   mapping = NULL,
   data = NULL,
   rotate = 0,
-  textsize = 5,
-  distance = NULL,
+  labelsize = 5,
+  labeldistance = NULL,
+  labelcolor = NULL,
   outerstart = NULL,
   width = NULL,
   mid = NULL,
   bending = NULL,
   npoints = 100,
+  inherit.aes = TRUE,
   ...
 )
 }
@@ -41,9 +43,11 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{rotate}{integer, either 0, 90, 180 or 270 to indicate if the braces should point up, right, down or left respectively}
 
-\item{textsize}{number, regulates text size}
+\item{labelsize}{number, changing the font size of the label. Only takes effect if the parameter "label" was defined.}
 
-\item{distance}{number, regulates how far away the brace is from the last data point (individually for each group)}
+\item{labeldistance}{number, distance of the label to the brace pointer}
+
+\item{labelcolor}{string, defining the color of the label. Only takes effect if the parameter "label" was defined.}
 
 \item{outerstart}{number, overwrites distance and provides one coordinate for all braces}
 
@@ -54,6 +58,11 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{bending}{number, sets one value for all braces for how much the curves of the braces are bent (the higher, the more round). If not specified, the curves will be defined by the bracelength. Note that if too high, the brace will show unwanted zick-zack lines.}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
+
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
