@@ -5,14 +5,14 @@
 \title{create a curly brace as a layer ready to be added to a ggplot object}
 \usage{
 geom_brace(
-  mapping = NULL,
-  data = NULL,
-  inherit.aes = FALSE,
   xstart = 0,
   xend = 1,
   ystart = 0,
   yend = 1,
   mid = 0.5,
+  mapping = NULL,
+  data = NULL,
+  inherit.aes = FALSE,
   rotate = 0,
   bending = NULL,
   label = NULL,
@@ -25,6 +25,16 @@ geom_brace(
 )
 }
 \arguments{
+\item{xstart}{number, most left part of the brace}
+
+\item{xend}{number, most right part of the brace}
+
+\item{ystart}{number, top end of the brace}
+
+\item{yend}{number, bottom end of the brace}
+
+\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
+
 \item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
 \code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
@@ -49,16 +59,6 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
-
-\item{xstart}{number, most left part of the brace}
-
-\item{xend}{number, most right part of the brace}
-
-\item{ystart}{number, top end of the brace}
-
-\item{yend}{number, bottom end of the brace}
-
-\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
 
 \item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
 

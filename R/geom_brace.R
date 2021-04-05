@@ -31,8 +31,10 @@
 #' ggplot() + geom_brace(ystart=-5, pointing="side")
 #'
 #' ggplot() + geom_brace(color="red", size=3, linetype="dashed")
-geom_brace <- function(mapping=NULL, data=NULL, inherit.aes=FALSE,
-  xstart=0, xend=1, ystart=0, yend=1, mid=0.5, rotate=0, bending=NULL,
+geom_brace <- function(
+  xstart=0, xend=1, ystart=0, yend=1, mid=0.5,
+  mapping=NULL, data=NULL, inherit.aes=FALSE,
+  rotate=0, bending=NULL,
   label=NULL, labeldistance=NULL, labelsize=5, labelcolor="black",
   npoints=100, pointing=NULL,
   ...
