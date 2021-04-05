@@ -5,35 +5,64 @@
 \title{create a curly brace as a layer ready to be added to a ggplot object}
 \usage{
 geom_brace(
+  mapping = NULL,
+  data = NULL,
+  inherit.aes = FALSE,
   xstart = 0,
   xend = 1,
   ystart = 0,
   yend = 1,
   mid = 0.5,
-  pointing = "updown",
+  rotate = 0,
   bending = NULL,
   label = NULL,
   labeldistance = NULL,
   labelsize = 5,
   labelcolor = "black",
   npoints = 100,
+  pointing = NULL,
   ...
 )
 }
 \arguments{
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
+\code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
+default), it is combined with the default mapping at the top level of the
+plot. You must supply \code{mapping} if there is no plot mapping.}
+
+\item{data}{The data to be displayed in this layer. There are three
+options:
+
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
+
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
+
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame}, and
+will be used as the layer data. A \code{function} can be created
+from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
+
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+
 \item{xstart}{number, most left part of the brace}
 
-\item{xend}{number, most right part of the brace. If pointing="side" the brace points towards this.}
+\item{xend}{number, most right part of the brace}
 
 \item{ystart}{number, top end of the brace}
 
-\item{yend}{number, bottom end of the brace. If pointing="updown" (default) the brace points towards this.}
+\item{yend}{number, bottom end of the brace}
 
 \item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
 
-\item{pointing}{string, either "side" or "updown" (default)}
+\item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
 
-\item{bending}{number, sets one value for all braces for how much the curves of the braces are bent (the higher, the more round). If not specified, the curves will be defined by the bracelength. Note that if too high, the brace will show unwanted zick-zack lines.}
+\item{bending}{number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines}
 
 \item{label}{string, a custom text to be displayed at the brace.}
 
@@ -44,6 +73,8 @@ geom_brace(
 \item{labelcolor}{string, defining the color of the label. Only takes effect if the parameter "label" was defined.}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
+
+\item{pointing}{(DEPRECATED) string, either "side" or "updown"}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like

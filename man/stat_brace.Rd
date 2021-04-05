@@ -41,7 +41,7 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{rotate}{integer, either 0, 90, 180 or 270 to indicate if the braces should point up, right, down or left respectively}
+\item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
 
 \item{labelsize}{number, changing the font size of the label. Only takes effect if the parameter "label" was defined.}
 
@@ -55,7 +55,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
 
-\item{bending}{number, sets one value for all braces for how much the curves of the braces are bent (the higher, the more round). If not specified, the curves will be defined by the bracelength. Note that if too high, the brace will show unwanted zick-zack lines.}
+\item{bending}{number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 
