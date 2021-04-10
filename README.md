@@ -91,19 +91,11 @@ plt + stat_brace(outerstart = 5, width = 1, bending = .1) # all braces get the s
 
 To vizualize the brace outside of the plotting area, we can simply use two ggplot2 functions. `coord_cartesian` needs to be mentioned with x and/or y range of the plotting area and the parameter `clip="off"` to allow plotting of objects outside of that area. Secondly, within the `theme` function, `plot.margin` needs to be set to expand outside area. This happens with 4 numbers (above, right, below, below, left).
 ```r
-df <- data.frame(x = 1:5, y = 1:5)     
-
-ggplot(df, aes(x, y)) +
-  geom_point() +
-  stat_brace(rotate = 90, width=1)
-
-ggplot(df, aes(x, y)) +
-  geom_point() +
-  stat_brace(rotate = 90, width=1) +
-  coord_cartesian(x=range(data$x), clip = "off") +
-  theme(plot.margin = unit(c(0.5, 7, 0.5, 0.5), units="lines")) #0.5 is roughly equal to the default. Most importantly, we set the space to the right to 7.
+plt + stat_brace(outerstart = 4.5) + 
+  coord_cartesian(y=range(iris$Sepal.Width), clip = "off") +
+  theme(plot.margin = unit(c(7, 0.5, 0.5, 0.5), units="lines"))
 ```
-<img src="readme_files/brace_outside.png"/>
+<img src="readme_files/outside.png"/>
 
 # Brace Customization
 
