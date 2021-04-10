@@ -2,13 +2,13 @@
 
 An R package that draws highly modifiable curly braces in [ggplot2](https://ggplot2.tidyverse.org/). The brace can easily be modified and added to an existing ggplot object. ggbrace vizualizes the brace using a ggplot2's geom_path layer.
 
-<img src="readme_files/statbrace4.png"/>
+<img src="readme_files/frontImage.png"/>
 
 Table of contents:
 
 - [Installation](#Installation)
-- [Single Brace](#Single-Brace-geom_brace)
-- [Data-oriented Braces](#Data-oriented-Braces-stat_brace)
+- [Default braces](#Default-braces)
+- [Labels](#Labels)
 - [Outside of plotting area](#Outside-of-plotting-area)
 - [Brace Customization](#Brace-Customization)
 - [Label Customization](#Label-Customization)
@@ -19,17 +19,29 @@ Install the package from the git repository:
 devtools::install_github("nicolash2/ggbrace")
 ```
 
-# Single Brace geom_brace
-Load the package, create a brace. You can also add a label.
-``` r
-library(ggbrace)
-library(ggplot2)
+# Default braces
+ggbrace has 3 ways of creating braces:
+- geom_brace default mode: manually define border for the braces (xstart, xend, ystart, yend)
+- geom_brace with inherit.aes or mapping: braces are drawn automatically in the confines of the most extreme values
+- geom_stat: braces are drawn automatically to enclose data points
 
-ggplot() + geom_brace()
-ggplot() + geom_brace(label="mylabel") + ylim(0,1.2)
+In our example we use the mtcars data to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
+
+``` r
+library(ggplot2)
+library(ggbrace)
+
+plt <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) + 
+  geom_point() +
+  theme_classic() +
+  theme(legend.position="none")
+  
+plt + geom_brace(xstart=4, xend=7, ystart=4, yend=4.5)
+plt + geom_brace(inherit.aes=T)
+plt + stat_brace()
 ```
 
-<img src="readme_files/up_and_uplabel.png"/>
+<img src="readme_files/default_braces.png"/>
 
 Some basic brace adjustments:
 
