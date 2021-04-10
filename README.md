@@ -45,7 +45,7 @@ plt + stat_brace()
 
 # Labels
 
-We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with inherit.aes=T accept it in the mapping (we defined `label=Species` in the main plot already).
+We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with inherit.aes=T accept it in the mapping (we defined `label=Species` in the main plot already). As the third plot shows, we can also define the space between the brace pointer and the label.
 
 ``` r
 plt + geom_brace(xstart=4, xend=7, ystart=4, yend=4.5, label="my label", labelsize=5)
