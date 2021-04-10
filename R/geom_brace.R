@@ -8,9 +8,9 @@
 #' @inheritParams ggplot2::geom_path
 #' @inheritParams ggplot2::annotate
 #'
-#' @param xstart number, most left part of the brace
+#' @param x number, most left part of the brace
 #' @param xend number, most right part of the brace
-#' @param ystart number, top end of the brace
+#' @param y number, top end of the brace
 #' @param yend number, bottom end of the brace
 #' @param mid number, where the pointer is within the bracket space (between 0.25 and 0.75)
 #' @param bending number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines
@@ -31,29 +31,21 @@
 #' ggplot() + geom_brace(ystart=-5, pointing="side")
 #'
 #' ggplot() + geom_brace(color="red", size=3, linetype="dashed")
+#'
 geom_brace <- function(
   xstart=0, xend=1, ystart=0, yend=1, mid=0.5,
   mapping=NULL, data=NULL, inherit.aes=FALSE,
-  rotate=0, bending=NULL,
-  label=NULL, labeldistance=NULL, labelsize=5, labelcolor="black",
+  rotate=0, bending=NULL, labelrotate=0,
+  label=NULL, labeldistance=NULL, labelsize=0, labelcolor="black",
   npoints=100, pointing=NULL,
   ...
 ){
-
   if(!is.null(pointing)) message("Warning: pointing is deprecated and will be discontinued in future releases. Use rotate instead.")
-
   if(!is.null(mapping) | inherit.aes){
-    #calculate coordinates for braces and labels
-    StatBraceAndLabel <- .funStatBrace(position="in", rotate=rotate, mid=mid, bending=bending, npoints=npoints)
-    StatBrace <- StatBraceAndLabel[[1]] #first list item contains ggproto for braces
-    StatBraceLabel <- StatBraceAndLabel[[2]] #second list item contains ggproto for labels
 
-    output <- ggplot2::layer(
-      stat = StatBrace,
-      data = data, mapping = mapping, geom = "path",
-      position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
-      params = list(...)
-    )
+    output <- stat_brace(mapping=mapping, data=data, rotate=rotate,
+                         labelsize=labelsize, labeldistance=labeldistance, labelrotate=labelrotate,
+                         mid=mid, bending=bending, npoints=npoints, outerstart=NA)
 
   }else{
     #making sure previous usage of this function works as it should, but at the same time, integrate rotate

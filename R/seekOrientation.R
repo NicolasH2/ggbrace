@@ -1,17 +1,17 @@
 # calculate important points for the brace
 .seekOrientation <- function(xlim, ylim, rotate, mid, bending=NULL, npoints=100){
-  xstart <- min(xlim)
-  xend <- max(xlim)
-  ystart <- min(ylim)
-  yend <- max(ylim)
+  xstart <- xlim[1]#min(xlim)
+  xend <- xlim[2]#max(xlim)
+  ystart <- ylim[1]#min(ylim)
+  yend <- ylim[2]#max(ylim)
 
-  if(rotate==180){
-    yend <- min(ylim)
-    ystart <- max(ylim)
-  }else if(rotate==270){
-    xend <- min(xlim)
-    xstart <- max(xlim)
-  }
+  # if(rotate==180){
+  #   yend <- min(ylim)
+  #   ystart <- max(ylim)
+  # }else if(rotate==270){
+  #   xend <- min(xlim)
+  #   xstart <- max(xlim)
+  # }
 
   if(mid < 0.25){
     mid <- 0.25

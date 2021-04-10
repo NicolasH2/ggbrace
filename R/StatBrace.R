@@ -1,5 +1,8 @@
 #returns ggproto objects for the braces and labels. Their data.frames are taken from the .modorientation function.
-.funStatBrace <- function(width=NULL, position="out", rotate, outerstart=NULL, mid, bending=NULL, npoints=100, distance){
+.funStatBrace <- function(width=NULL, position="out", rotate, outerstart=NULL, mid, bending=NULL, npoints=100, distance=NULL, labeldistance=NULL){
+
+  if(!is.null(distance) & !is.null(labeldistance)) labeldistance <- labeldistance + distance
+  if(!is.null(distance) & is.null(labeldistance)) labeldistance <- distance
 
   #calculate brace coordinates via .subcalc
   StatBrace <- ggproto("StatBrace", Stat,
@@ -15,6 +18,7 @@
                                                   width = width,
                                                   rotate = rotate,
                                                   mid = mid,
+                                                  distance = distance,
                                                   bending = bending,
                                                   npoints = npoints)[[1]]
                          return(brace)
@@ -30,11 +34,12 @@
                               y <- data$y
                               bracelabel <- .modorientation(x = x,
                                                             y = y,
+                                                            position = position,
                                                             outerstart = outerstart,
                                                             width = width,
                                                             rotate = rotate,
                                                             mid = mid,
-                                                            distance = distance)[[2]]
+                                                            distance = labeldistance)[[2]]
                               return(bracelabel)
                             }
   )
@@ -50,7 +55,6 @@
   yrange <- range(y, na.rm = TRUE)
   flip <- ifelse(rotate==180 | rotate==270, TRUE, FALSE) #should the pointing direction be flipped?
 
-  #set parameters for the labels
   if(any(rotate==c(90, 270))){
     if(flip) xrange <- rev(xrange)
     if(is.null(mid)) mid <- (median(y) - min(yrange)) / abs(diff(yrange))

@@ -15,9 +15,10 @@ geom_brace(
   inherit.aes = FALSE,
   rotate = 0,
   bending = NULL,
+  labelrotate = 0,
   label = NULL,
   labeldistance = NULL,
-  labelsize = 5,
+  labelsize = 0,
   labelcolor = "black",
   npoints = 100,
   pointing = NULL,
@@ -25,11 +26,7 @@ geom_brace(
 )
 }
 \arguments{
-\item{xstart}{number, most left part of the brace}
-
 \item{xend}{number, most right part of the brace}
-
-\item{ystart}{number, top end of the brace}
 
 \item{yend}{number, bottom end of the brace}
 
@@ -80,6 +77,10 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
+
+\item{x}{number, most left part of the brace}
+
+\item{y}{number, top end of the brace}
 }
 \value{
 ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (annotate) is added.
@@ -96,4 +97,5 @@ ggplot() + geom_brace()
 ggplot() + geom_brace(ystart=-5, pointing="side")
 
 ggplot() + geom_brace(color="red", size=3, linetype="dashed")
+
 }

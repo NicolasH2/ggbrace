@@ -8,9 +8,10 @@ stat_brace(
   mapping = NULL,
   data = NULL,
   rotate = 0,
-  labelsize = 5,
+  labelsize = 0,
   labeldistance = NULL,
-  labelcolor = NULL,
+  labelrotate = 0,
+  distance = NULL,
   outerstart = NULL,
   width = NULL,
   mid = NULL,
@@ -47,7 +48,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{labeldistance}{number, distance of the label to the brace pointer}
 
-\item{labelcolor}{string, defining the color of the label. Only takes effect if the parameter "label" was defined.}
+\item{distance}{number between the brace and the nearest data point}
 
 \item{outerstart}{number, overwrites distance and provides one coordinate for all braces}
 
