@@ -21,9 +21,9 @@ devtools::install_github("nicolash2/ggbrace")
 
 # Default braces
 ggbrace has 3 ways of creating braces:
-- geom_brace default mode: manually define border for the braces (xstart, xend, ystart, yend)
-- geom_brace with inherit.aes or mapping: braces are drawn automatically in the confines of the most extreme values
-- geom_stat: braces are drawn automatically to enclose data points
+- `geom_brace` default mode: manually define border for the braces (xstart, xend, ystart, yend)
+- `geom_brace` with inherit.aes or mapping: braces are drawn automatically in the confines of the most extreme values
+- `geom_stat`: braces are drawn automatically to enclose data points
 
 In our example we use the mtcars data to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
 
@@ -43,23 +43,20 @@ plt + stat_brace()
 
 <img src="readme_files/default_braces.png"/>
 
-Some basic brace adjustments:
+# Labels
 
-- For a brace pointing sideways, specify `pointing="side"`
-- To invert the brace, define x and y coordinates so that the start is a higher number than the end.
-- To change the pointer position within the brace, change the `mid` parameter. This is always between 0.25 and 0.75.
+We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with inherit.aes=T accept it in the mapping (we defined `label=Species` in the main plot already).
+
 ``` r
-ggplot() + geom_brace(pointing="side") #point sideways
-ggplot() + geom_brace(ystart=2, yend= -2) #point down instead of up
-ggplot() + geom_brace(mid=0.7) #shift the brace pointer
+plt + geom_brace(xstart=4, xend=7, ystart=4, yend=4.5, label="my label", labelsize=5)
+plt + geom_brace(inherit.aes=T, labelsize = 5)
+plt + stat_brace(labelsize = 5)
 ```
-<img src="readme_files/default_braces.png"/>
+<img src="readme_files/custom_text.png"/>
 
-# Data-oriented Braces stat_brace
+# Rotation
 
-Instead of defining the brace location ourself, we can use the `stat_brace` function to generate braces that automatically indicate groups of data points. In these simple examples, we divide the mtcars dataset by the "am" column. The braces will automatically define the borders of the groups. With the `rotate` arguement we can get braces that point left, right or down. We can also add text, by specifying `label` in the mapping (aes) arguement.
-
-Note that the brace pointer and the label will be at the data median, unless the user specifies the mid arguement (e.g. `mid=0.5` to always be in the middle of the brace).
+We can rotate the braces by 90, 180 or 270 degrees via the `rotate` arguement. The labels are not automatically rotated. For that we have to define the `labelrotate` arguement separately
 
 ``` r
 ggplot(mtcars, aes(mpg, wt, color=factor(am))) + 
@@ -77,10 +74,18 @@ ggplot(mtcars, aes(mpg, wt, color=factor(am))) +
 ```
 
 <img src="readme_files/statbrace1.png"/>
-<img src="readme_files/statbrace2.png"/>
-<img src="readme_files/statbrace3.png"/>
 
-Note: in this example we used the color arguement to separate groups. If you want to have separate braces for different groups but without making them colorful, use `group=factor(am)` instead of `color=factor(am)`. You can then still choose a color by defining e.g. `color="blue"` outside the mapping.
+# Location
+
+For stat_brace, the location of the brace is beside the data points. We can define how far away, where and how big the braces. We can also define the bending, i.e. the curvature of the brace. This last parameter can also be set in geom_brace (not shown here).
+
+```r
+plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group
+plt + stat_brace(outerstart = 5) # all braces are put at the same position
+plt + stat_brace(outerstart = 5, width = 1) # all braces get the same width
+plt + stat_brace(outerstart = 5, width = 1, bending = .1) # all braces get the same curvature
+```
+<img src="readme_files/custom_distance.png"/>
 
 # Outside of plotting area
 
