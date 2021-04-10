@@ -97,36 +97,3 @@ plt + stat_brace(outerstart = 4.5) +
 ```
 <img src="readme_files/outside.png"/>
 
-# Brace Customization
-
-To change how the brace looks like, simply provide the arguements needed by ggplot2. This includes all arguements that could be given to geom_path: `size`, `color`, `linetype`, `alpha` (opacity), `lineend` and `linejoin`. The first 3 are examplified here.
-
-``` r
-ggplot() + geom_brace(linetype="dashed", color="blue", size=3, alpha=0.6)
-```
-<img src="readme_files/parameters.png"/>
-
-If the size is bigger than usual, it might make sense to specify how the ends of the brace look like. This can be specified via the `lineend` and `linejoin` options (inherent to the ggplot2's geom_path object). They lead to subtle differences.
-
-``` r
-ggplot() + geom_brace(size=5, lineend="butt")
-ggplot() + geom_brace(size=5, linejoin="mitre")
-```
-<img src="readme_files/parameters2.png"/>
-
-All possible options for:
-- linetype: solid (default), dotted, dotdash, twodash, dashed, longdash, blank
-- lineend: butt (default), square, round
-- linejoin: round (default), mitre, bevel
-
-# Label Customization
-
-The label can be customized using the `labelsize`, `labeldistance` and `labelcolor` arguments as well as any arguements taken by `ggplot2`'s `annotate` function, such as `fontface` or `family`.
-
-``` r
-ggplot() + 
-  geom_brace(label="mylabel", labelcolor="red", fontface="bold") + 
-  ylim(0,1.2)
-```
-
-<img src="readme_files/custom_text.png"/>
