@@ -79,7 +79,9 @@ plt + stat_brace(outerstart = 5, width = 1, bending = .1) # all braces get the s
 
 # Outside of plotting area
 
-To vizualize the brace outside of the plotting area, we can simply use two ggplot2 functions. `coord_cartesian` needs to be mentioned with x and/or y range of the plotting area and the parameter `clip="off"` to allow plotting of objects outside of that area. Secondly, within the `theme` function, `plot.margin` needs to be set to expand outside area. This happens with 4 numbers (above, right, below, below, left).
+To vizualize the brace outside of the plotting area, we can simply use two ggplot2 functions. 
+- `coord_cartesian` needs to be mentioned with x and/or y range of the plotting area and the parameter `clip="off"` to allow plotting of objects outside of that area.
+- within the `theme` function, `plot.margin` needs to be set to expand the outside area. This happens with 4 numbers (above, right, below, left).
 ```r
 plt + stat_brace(outerstart = 4.5) + 
   coord_cartesian(y=range(iris$Sepal.Width), clip = "off") +
