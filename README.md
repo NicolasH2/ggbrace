@@ -10,8 +10,6 @@ Table of contents:
 - [Default braces](#Default-braces)
 - [Labels](#Labels)
 - [Outside of plotting area](#Outside-of-plotting-area)
-- [Brace Customization](#Brace-Customization)
-- [Label Customization](#Label-Customization)
 
 # Installation
 Install the package from the git repository:
