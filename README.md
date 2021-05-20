@@ -57,10 +57,10 @@ plt + stat_brace(labelsize = 5)
 We can rotate the braces by 90, 180 or 270 degrees via the `rotate` arguement. The labels are not automatically rotated. For that we have to define the `labelrotate` arguement separately
 
 ``` r
-plt + stat_brace(distance = 2)
-plt + stat_brace(outerstart = 5)
-plt + stat_brace(outerstart = 5, width = 1)
-plt + stat_brace(outerstart = 5, width = 1, bending = .1)
+plt + stat_brace(labelsize=5)
+plt + stat_brace(labelsize=5, rotate = 90)
+plt + stat_brace(labelsize=5, rotate = 90, labelrotate=90)
+plt + stat_brace(labelsize=5, rotate = 90, labelrotate=90, labeldistance = 1)
 ```
 
 <img src="readme_files/custom_rotation.png"/>
