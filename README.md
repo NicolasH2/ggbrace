@@ -1,13 +1,14 @@
 # ggbrace
 
-An [R](https://www.r-project.org) package that draws curly braces in [ggplot2](https://ggplot2.tidyverse.org/).
-
-<img src="readme_files/frontImage.png"/>
-
 # Table of contents
+- [Installation](#Installation)
 - [Default braces](#Default-braces)
 - [Labels](#Labels)
 - [Outside of plotting area](#Outside-of-plotting-area)
+
+An [R](https://www.r-project.org) package that draws curly braces in [ggplot2](https://ggplot2.tidyverse.org/).
+
+<img src="readme_files/frontImage.png"/>
 
 # Installation
 Install the package from the git repository:
