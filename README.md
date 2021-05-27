@@ -19,8 +19,8 @@ devtools::install_github("nicolash2/ggbrace")
 
 # Default braces
 ggbrace has 3 ways of creating braces:
-- `geom_brace` default mode: manually define border for the braces (xstart, xend, ystart, yend)
-- `geom_brace` with inherit.aes or mapping: braces are drawn automatically in the confines of the most extreme values
+- `geom_brace #(default mode)`: manually define border for the braces (xstart, xend, ystart, yend)
+- `geom_brace #(with inherit.aes or mapping)`: braces are drawn automatically in the confines of the most extreme values
 - `geom_stat`: braces are drawn automatically to enclose data points
 
 In our example we use the mtcars data to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
@@ -66,7 +66,7 @@ plt + stat_brace(labelsize=5, rotate = 90, labelrotate=90, labeldistance = 1)
 
 # Location
 
-For stat_brace, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the bending, i.e. the curvature. This last parameter can also be set in geom_brace (not shown here).
+For `stat_brace`, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature. This last parameter can also be set in `geom_brace` (not shown here).
 
 ```r
 plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group
@@ -80,7 +80,7 @@ plt + stat_brace(outerstart = 5, width = 1, bending = 0.1) # all braces get the 
 
 To vizualize the brace outside of the plotting area, we can simply use two ggplot2 functions. 
 - `coord_cartesian` needs to be mentioned with x and/or y range of the plotting area and the parameter `clip="off"` to allow plotting of objects outside of that area.
-- within the `theme` function, `plot.margin` needs to be set to expand the outside area. This happens with 4 numbers (above, right, below, left). This can best be achieved with the "npc" unit, as it reflects the plot units and is therefore maintained independent of the pixels, cm, etc.
+- within the `theme` function, `plot.margin` needs to be set to expand the outside area. This happens with 4 numbers (above, right, below, left). This can best be achieved with the `"npc"` unit, as it reflects the plot units and is therefore maintained independent of the pixels, cm, etc. Other units can be seen with ?unit (under grid).
 ```r
 plt + stat_brace(outerstart = 4.5) + 
   coord_cartesian(y=range(iris$Sepal.Width), clip = "off") + #for the range just use the data for the respective axis
