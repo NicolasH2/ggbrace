@@ -5,7 +5,7 @@ An [R](https://www.r-project.org) package that draws curly braces in [ggplot2](h
 # Table of contents
 - [Installation](#Installation)
 - [Default braces](#Default-braces)
-- [Labels](#Labels)
+- [Labels & Modifications](#Labels-&-Modifications)
 - [Outside of plotting area](#Outside-of-plotting-area)
 
 <img src="readme_files/frontImage.png"/>
@@ -40,7 +40,9 @@ plt + stat_brace()
 
 <img src="readme_files/default_braces.png"/>
 
-# Labels
+# Labels & Modifications
+
+## Labels
 
 We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with inherit.aes=T accept it in the mapping (we defined `label=Species` in the main plot already). As the third plot shows, we can also define the space between the brace pointer and the label.
 
@@ -51,7 +53,7 @@ plt + stat_brace(labelsize = 5)
 ```
 <img src="readme_files/custom_text.png"/>
 
-# Rotation
+## Rotation
 
 We can rotate the braces by 90, 180 or 270 degrees via the `rotate` arguement. The labels are not automatically rotated. For that we have to define the `labelrotate` arguement separately
 
@@ -63,7 +65,7 @@ plt + stat_brace(labelsize=5, rotate = 90, labelrotate=90, labeldistance = 1)
 
 <img src="readme_files/custom_rotation.png"/>
 
-# Location
+## Location
 
 For `stat_brace`, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature. This last parameter can also be set in `geom_brace` (not shown here).
 
