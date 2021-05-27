@@ -4,9 +4,8 @@ An [R](https://www.r-project.org) package that draws highly modifiable curly bra
 
 <img src="readme_files/frontImage.png"/>
 
-Table of contents:
+# Table of contents:
 
-- [Installation](#Installation)
 - [Default braces](#Default-braces)
 - [Labels](#Labels)
 - [Outside of plotting area](#Outside-of-plotting-area)
