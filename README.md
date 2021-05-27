@@ -72,7 +72,7 @@ For stat_brace, the location of the brace is beside the data points. We can defi
 plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group
 plt + stat_brace(outerstart = 5) # all braces are put at the same position
 plt + stat_brace(outerstart = 5, width = 1) # all braces get the same width
-plt + stat_brace(outerstart = 5, width = 1, bending = .1) # all braces get the same curvature
+plt + stat_brace(outerstart = 5, width = 1, bending = 0.1) # all braces get the same curvature
 ```
 <img src="readme_files/custom_distance.png"/>
 
