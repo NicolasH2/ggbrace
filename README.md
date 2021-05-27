@@ -4,8 +4,7 @@ An [R](https://www.r-project.org) package that draws curly braces in [ggplot2](h
 
 <img src="readme_files/frontImage.png"/>
 
-# Table of contents:
-
+# Table of contents
 - [Default braces](#Default-braces)
 - [Labels](#Labels)
 - [Outside of plotting area](#Outside-of-plotting-area)
