@@ -66,7 +66,7 @@ plt + stat_brace(labelsize=5, rotate = 90, labelrotate=90, labeldistance = 1)
 
 # Location
 
-For stat_brace, the location of the brace is beside the data points. We can define how far away, where and how big the braces. We can also define the bending, i.e. the curvature of the brace. This last parameter can also be set in geom_brace (not shown here).
+For stat_brace, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the bending, i.e. the curvature. This last parameter can also be set in geom_brace (not shown here).
 
 ```r
 plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group
