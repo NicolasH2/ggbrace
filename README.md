@@ -85,7 +85,7 @@ To vizualize the brace outside of the plotting area, we can simply use two ggplo
 ```r
 plt + stat_brace(outerstart = 4.5) + 
   coord_cartesian(y=range(iris$Sepal.Width), clip = "off") + #for the range just use the data for the respective axis
-  theme(plot.margin = unit(c(0.25, 0.11, 0.11, 0.11), units="npc")) # 0.11 is roughly the default for ggplot
+  theme(plot.margin = unit(c(0.25, 0.11, 0.11, 0.11), units="npc"))
 ```
 <img src="readme_files/outside.png"/>
 
