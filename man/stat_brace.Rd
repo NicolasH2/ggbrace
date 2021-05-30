@@ -7,17 +7,18 @@
 stat_brace(
   mapping = NULL,
   data = NULL,
+  inherit.aes = TRUE,
   rotate = 0,
+  mid = NULL,
+  bending = NULL,
+  npoints = 100,
   labelsize = 0,
   labeldistance = NULL,
   labelrotate = 0,
   distance = NULL,
   outerstart = NULL,
   width = NULL,
-  mid = NULL,
-  bending = NULL,
-  npoints = 100,
-  inherit.aes = TRUE,
+  textORlabel = "text",
   ...
 )
 }
@@ -42,7 +43,18 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+
 \item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
+
+\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
+
+\item{bending}{number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines}
+
+\item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 
 \item{labelsize}{number, changing the font size of the label. Only takes effect if the parameter "label" was defined.}
 
@@ -54,21 +66,16 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{width}{number, regulates how wide the braces are}
 
-\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
-
-\item{bending}{number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines}
-
-\item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
-
-\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
-rather than combining with them. This is most useful for helper functions
-that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+\item{textORlabel}{string, either "text" or "label" to define whether geom_text or geom_label should be used}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
+
+\item{label}{string, a custom text to be displayed at the brace.}
+
+\item{labelcolor}{string, defining the color of the label. Only takes effect if the parameter "label" was defined.}
 }
 \value{
 ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (geom_text) is added.

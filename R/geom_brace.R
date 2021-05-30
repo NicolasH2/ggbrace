@@ -5,100 +5,82 @@
 #' Imports:
 #' ggplot2
 #'
+#' @inheritParams stat_brace
 #' @inheritParams ggplot2::geom_path
 #' @inheritParams ggplot2::annotate
 #'
-#' @param x number, most left part of the brace
-#' @param xend number, most right part of the brace
-#' @param y number, top end of the brace
-#' @param yend number, bottom end of the brace
-#' @param mid number, where the pointer is within the bracket space (between 0.25 and 0.75)
-#' @param bending number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines
-#' @param rotate number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.
-#' @param label string, a custom text to be displayed at the brace.
-#' @param labeldistance number, distance of the label to the brace pointer
-#' @param labelsize number, changing the font size of the label. Only takes effect if the parameter "label" was defined.
-#' @param labelcolor string, defining the color of the label. Only takes effect if the parameter "label" was defined.
-#' @param npoints integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.
-#' @param pointing (DEPRECATED) string, either "side" or "updown"
-#' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (annotate) is added.
+#' @param inherit.data boolean, should data (and aes) from the ggplot main function be inherited? Set to FALSE if you set your own x and y.
+#' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, another layer is added.
 #' @export
 #' @examples
 #' library(ggbrace)
 #' library(ggplot2)
 #' ggplot() + geom_brace()
 #'
-#' ggplot() + geom_brace(ystart=-5, pointing="side")
+#' ggplot() + geom_brace(aes(x=c(1,2), y=c(1,2)), inherit.data=FALSE)
 #'
-#' ggplot() + geom_brace(color="red", size=3, linetype="dashed")
-#'
-geom_brace <- function(
-  xstart=0, xend=1, ystart=0, yend=1, mid=0.5,
-  mapping=NULL, data=NULL, inherit.aes=FALSE,
-  rotate=0, bending=NULL, labelrotate=0,
-  label=NULL, labeldistance=NULL, labelsize=0, labelcolor="black",
-  npoints=100, pointing=NULL,
-  ...
-){
-  if(!is.null(pointing)) message("Warning: pointing is deprecated and will be discontinued in future releases. Use rotate instead.")
-  if(!is.null(mapping) | inherit.aes){
+geom_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-related
+                       inherit.data=TRUE,
+                       rotate=0, mid=NULL, bending=NULL, npoints=100, #orientation and shape
+                       labelsize = 0, labeldistance=NULL, labelrotate=0, #labels
+                       textORlabel="text",
+                       ...){
+  #================#
+  #==preparations==#
+  #================#
+  #if user provides custom x and y, data (from ggplot main function) must be set to NULL and inherit.aes to FALSE.
+  #otherwise ggplot will try to match the custom x and y to the data provided before which will have a different size, ending in an error
+  if(!inherit.data){
+    data <- data.frame()
+    inherit.aes <- FALSE
+  }
+  #force mid between 0.25 and 0.75
+  mid <- ifelse(mid>0.75, 0.75, ifelse(mid<0.25, 0.25, mid))
+  #up and right will be positive; down and left will be negative. The direction variable will be a shortcut to determine how the brace and text is placed
+  direction <- -sign(rotate/90-1.5)
 
-    output <- stat_brace(mapping=mapping, data=data, rotate=rotate,
-                         labelsize=labelsize, labeldistance=labeldistance, labelrotate=labelrotate,
-                         mid=mid, bending=bending, npoints=npoints, outerstart=NA)
-
-  }else{
-    #making sure previous usage of this function works as it should, but at the same time, integrate rotate
-    if( !any(names(as.list(match.call())) %in% "rotate")){
-      rotate <- ifelse(yend>ystart, 0, 180)
-      if(!is.null(pointing)){
-        if(pointing %in% "side") rotate <- ifelse(xend>xstart, 90, 270)
-      }
+  #=======================#
+  #==label for the brace==#
+  #=======================#
+  added_labels <- NULL #in case there is no label, the actual brace will be combined with NULL instead of something that doesn't exist
+  if(labelsize>0){
+    #hjust and vjust of the text depend on the brace rotation and the label rotation
+    if(labelrotate==90){
+      txtvjust <- switch(rotate/90+1, 0.5, 1, 0.5, 0)
+      txthjust <- switch(rotate/90+1, 0, 0.5, 1, 0.5)
+    }else if(labelrotate==270){
+      txtvjust <- switch(rotate/90+1, 0.5, 0, 0.5, 1)
+      txthjust <- switch(rotate/90+1, 1, 0.5, 0, 0.5)
+    }else{
+      txtvjust <- switch(rotate/90 +1, 0, 0.5, 1, 0.5)
+      txthjust <- switch(rotate/90 +1, 0.5, 0, 0.5, 1)
     }
-
-    #calculate a data.frame with x and y values for plotting the brace
-    orientation <- .seekOrientation(xlim = c(xstart, xend), ylim = c(ystart, yend), mid=mid, rotate=rotate, bending=bending, npoints=npoints)
-    data <- orientation[[1]]
-
-    #plot the brace
-    output <- ggplot2::layer(
-      data = data,
-      mapping = ggplot2::aes(x=x, y=y),
-      geom = "path",
-      stat = "identity",
-      position = "identity",
-      show.legend = FALSE,
-      inherit.aes = FALSE,
-      params=list(...)
+    #create ggplot layer. StatBraceLabel will do the calculations where to put the text (calling .coordCorrection)
+    added_labels <- ggplot2::layer(
+      stat = StatBraceLabel,
+      data = data, mapping = mapping, geom = textORlabel,
+      position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
+      params = list(vjust=txtvjust, hjust=txthjust, size=labelsize, angle=labelrotate,
+                    rotate=rotate, bending=bending, npoints=npoints, mid=mid,
+                    labeldistance=labeldistance,
+                    direction=direction, outside=FALSE, ...)
     )
-
-    #label annotation at the same position as the brace pointer
-    if(!is.null(label)){
-      if(is.null(labeldistance)) labeldistance <- 0
-      xdistance <- ifelse(any(rotate==c(90,270)), sign(sin(rotate+.1))*labeldistance, 0)
-      ydistance <- ifelse(any(rotate==c(90,270)), 0, sign(sin(rotate+.1))*labeldistance)
-
-      ori2 <- orientation[[2]]
-
-      txt <- ggplot2::annotate(
-        geom = "text",
-        label = label,
-        size = labelsize,
-        color = labelcolor,
-        x = ori2$x + xdistance,
-        y = ori2$y + ydistance,
-        angle = ori2$rot,
-        hjust = 0.5,
-        vjust = ori2$vjust,
-        ...
-      )
-      #combine brace and label
-      output <- list(output, txt)
-    }
-
   }
 
+  #====================#
+  #==the brace itself==#
+  #====================#
+  mapping$label <- NULL #set this to null to avoid a message from the next ggplot layer (which has no label option)
+  #create ggplot layer. StatBrace will do the calculations where and how to draw the brace (calling .coordCorrection and then .seekBrace)
+  outbrace <- ggplot2::layer(
+    stat = StatBrace,
+    data = data, mapping = mapping, geom = "path",
+    position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
+    params = list(rotate=rotate, bending=bending, npoints=npoints, mid=mid,
+                  outside=FALSE, direction=direction, ...)
+  )
 
+  outbrace <- c(outbrace, added_labels)
 
-  return(output)
+  return(outbrace)
 }

@@ -5,33 +5,22 @@
 \title{create a curly brace as a layer ready to be added to a ggplot object}
 \usage{
 geom_brace(
-  xstart = 0,
-  xend = 1,
-  ystart = 0,
-  yend = 1,
-  mid = 0.5,
   mapping = NULL,
   data = NULL,
-  inherit.aes = FALSE,
+  inherit.aes = TRUE,
+  inherit.data = TRUE,
   rotate = 0,
+  mid = NULL,
   bending = NULL,
-  labelrotate = 0,
-  label = NULL,
-  labeldistance = NULL,
-  labelsize = 0,
-  labelcolor = "black",
   npoints = 100,
-  pointing = NULL,
+  labelsize = 0,
+  labeldistance = NULL,
+  labelrotate = 0,
+  textORlabel = "text",
   ...
 )
 }
 \arguments{
-\item{xend}{number, most right part of the brace}
-
-\item{yend}{number, bottom end of the brace}
-
-\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
-
 \item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
 \code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
@@ -57,33 +46,29 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
+\item{inherit.data}{boolean, should data (and aes) from the ggplot main function be inherited? Set to FALSE if you set your own x and y.}
+
 \item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
+
+\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75)}
 
 \item{bending}{number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines}
 
-\item{label}{string, a custom text to be displayed at the brace.}
-
-\item{labeldistance}{number, distance of the label to the brace pointer}
+\item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 
 \item{labelsize}{number, changing the font size of the label. Only takes effect if the parameter "label" was defined.}
 
-\item{labelcolor}{string, defining the color of the label. Only takes effect if the parameter "label" was defined.}
+\item{labeldistance}{number, distance of the label to the brace pointer}
 
-\item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
-
-\item{pointing}{(DEPRECATED) string, either "side" or "updown"}
+\item{textORlabel}{string, either "text" or "label" to define whether geom_text or geom_label should be used}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
-
-\item{x}{number, most left part of the brace}
-
-\item{y}{number, top end of the brace}
 }
 \value{
-ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (annotate) is added.
+ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, another layer is added.
 }
 \description{
 Imports:
@@ -94,8 +79,6 @@ library(ggbrace)
 library(ggplot2)
 ggplot() + geom_brace()
 
-ggplot() + geom_brace(ystart=-5, pointing="side")
-
-ggplot() + geom_brace(color="red", size=3, linetype="dashed")
+ggplot() + geom_brace(aes(x=c(1,2), y=c(1,2)), inherit.data=FALSE)
 
 }

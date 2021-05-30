@@ -18,8 +18,8 @@ devtools::install_github("nicolash2/ggbrace")
 
 # Default braces
 ggbrace has 3 ways of creating braces:
-- `geom_brace #(default mode)`: manually define border for the braces (xstart, xend, ystart, yend)
-- `geom_brace #(with inherit.aes or mapping)`: braces are drawn automatically in the confines of the most extreme values
+- `geom_brace #(manual mode)`: manually define border for the braces and set (`inherit.data=FALSE`)
+- `geom_brace #(default mode)`: braces are drawn automatically in the confines of the data
 - `geom_stat`: braces are drawn automatically to enclose data points
 
 In our example we use the mtcars data to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
@@ -33,8 +33,8 @@ plt <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Spec
   theme_classic() +
   theme(legend.position="none")
   
-plt + geom_brace(xstart=4, xend=7, ystart=4, yend=4.5)
-plt + geom_brace(inherit.aes=T)
+plt + geom_brace(aes(c(4,7), c(4, 4.5)), inherit.data=F)
+plt + geom_brace()
 plt + stat_brace()
 ```
 
@@ -47,8 +47,8 @@ plt + stat_brace()
 We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with inherit.aes=T accept it in the mapping (we defined `label=Species` in the main plot already). As the third plot shows, we can also define the space between the brace pointer and the label.
 
 ``` r
-plt + geom_brace(xstart=4, xend=7, ystart=4, yend=4.5, label="my label", labelsize=5)
-plt + geom_brace(inherit.aes=T, labelsize = 5)
+plt + geom_brace(aes(c(4,7), c(4, 4.5), label="my label"), inherit.data=F, labelsize=5)
+plt + geom_brace(labelsize = 5)
 plt + stat_brace(labelsize = 5)
 ```
 <img src="readme_files/custom_text.png"/>

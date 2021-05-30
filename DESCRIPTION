@@ -1,8 +1,8 @@
 Package: ggbrace
 Type: Package
 Title: Curly Braces in ggplot
-Depends: 
-    R (>= 3.6.0)
+Depends:
+    R (>= 3.6.0),
     ggplot2 (>= 3.3.1)
 Imports: ggplot2 (>= 3.3.1)
 Version: 0.1.0
