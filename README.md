@@ -7,6 +7,7 @@ An [R](https://www.r-project.org) package that draws curly braces in [ggplot2](h
 - [Default braces](#Default-braces)
 - [Labels & Modifications](#Labels-&-Modifications)
 - [Outside of plotting area](#Outside-of-plotting-area)
+- [Discrete values](#Discrete-values)
 
 <img src="readme_files/frontImage.png"/>
 
@@ -89,3 +90,26 @@ plt + stat_brace(outerstart = 4.5) +
 ```
 <img src="readme_files/outside.png"/>
 
+# Discrete values
+
+Unfortunately, as of now, ggbrace isn't behaving well with discrete x/y axes, which is why they will have to be wrapped into the `seq_along` function within the `aes()`.
+
+```r
+df <- data.frame(x = c("a","b","c","d","e"), y = 1:5)     
+
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  stat_brace(aes(x=seq_along(x)))
+```
+
+This wrapping into the `seq_along` function is also used in the `coord_cartesian` function when trying to plot outside the plotting area.
+
+```r
+df <- data.frame(x = c("a","b","c","d","e"), y = 1:5)     
+
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  stat_brace(aes(x=seq_along(x)), rotate=90) +
+  coord_cartesian(x=range(seq_along(df$x)), clip = "off") + 
+  theme(plot.margin = unit(c(0.5, 7, 0.5, 0.5), units="lines")) #other units would be "cm" etc.
+```
