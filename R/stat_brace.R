@@ -64,7 +64,7 @@ stat_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-r
       position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
       params = list(vjust=txtvjust, hjust=txthjust, size=labelsize, angle=labelrotate,
                     rotate=rotate, bending=bending, npoints=npoints, mid=mid,
-                    labeldistance=labeldistance,
+                    labeldistance=labeldistance, width=width,
                     distance=distance, outerstart=outerstart,
                     direction=direction, outside=TRUE, ...)
     )
