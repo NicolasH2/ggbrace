@@ -28,6 +28,22 @@ geom_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-r
   #================#
   #==preparations==#
   #================#
+  # Extract arguments for ggplot functions
+  dots <- list(...)
+  gglabel_args <- intersect(names(dots), unique(c(formalArgs(geom_label),formalArgs(layer))))
+  if(length(gglabel_args)>0){
+    dots_label <- dots[gglabel_args]
+  }else{
+    dots_label <- list(color="black")
+  }
+  
+  ggpath_args <- intersect(names(dots), unique(c(formalArgs(geom_path),formalArgs(layer))))
+  if(length(ggpath_args)>0){
+    dots_path <- dots[ggpath_args]
+  }else{
+    dots_path <- list(color="black")
+  }
+  
   #if user provides custom x and y, data (from ggplot main function) must be set to NULL and inherit.aes to FALSE.
   #otherwise ggplot will try to match the custom x and y to the data provided before which will have a different size, ending in an error
   if(!inherit.data){
@@ -60,10 +76,10 @@ geom_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-r
       stat = StatBraceLabel,
       data = data, mapping = mapping, geom = textORlabel,
       position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
-      params = list(vjust=txtvjust, hjust=txthjust, size=labelsize, angle=labelrotate,
+      params = append(dots_label, list(vjust=txtvjust, hjust=txthjust, size=labelsize, angle=labelrotate,
                     rotate=rotate, bending=bending, npoints=npoints, mid=mid,
                     labeldistance=labeldistance,
-                    direction=direction, outside=FALSE, ...)
+                    direction=direction, outside=FALSE))
     )
   }
 
@@ -76,8 +92,8 @@ geom_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-r
     stat = StatBrace,
     data = data, mapping = mapping, geom = "path",
     position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
-    params = list(rotate=rotate, bending=bending, npoints=npoints, mid=mid,
-                  outside=FALSE, direction=direction, ...)
+    params = append(dots_path, list(rotate=rotate, bending=bending, npoints=npoints, mid=mid,
+                  outside=FALSE, direction=direction))
   )
 
   outbrace <- c(outbrace, added_labels)
