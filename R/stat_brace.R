@@ -39,6 +39,22 @@ stat_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-r
   #================#
   #==preparations==#
   #================#
+  # Extract arguments for ggplot functions
+  dots <- list(...)
+  gglabel_args <- intersect(names(dots), unique(c(formalArgs(geom_label),formalArgs(layer))))
+  if(length(gglabel_args)>0){
+    dots_label <- dots[gglabel_args]
+  }else{
+    dots_label <- list(color="black")
+  }
+  
+  ggpath_args <- intersect(names(dots), unique(c(formalArgs(geom_path),formalArgs(layer))))
+  if(length(ggpath_args)>0){
+    dots_path <- dots[ggpath_args]
+  }else{
+    dots_path <- list(color="black")
+  }
+  
   #force mid between 0.25 and 0.75
   mid <- ifelse(mid>0.75, 0.75, ifelse(mid<0.25, 0.25, mid))
   #up and right will be positive; down and left will be negative
@@ -62,11 +78,11 @@ stat_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-r
       stat = StatBraceLabel,
       data = data, mapping = mapping, geom = textORlabel,
       position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
-      params = list(vjust=txtvjust, hjust=txthjust, size=labelsize, angle=labelrotate,
+      params = append(dots_label, list(vjust=txtvjust, hjust=txthjust, size=labelsize, angle=labelrotate,
                     rotate=rotate, bending=bending, npoints=npoints, mid=mid,
                     labeldistance=labeldistance, width=width,
                     distance=distance, outerstart=outerstart,
-                    direction=direction, outside=TRUE, ...)
+                    direction=direction, outside=TRUE))
     )
   }
   #====================#
@@ -78,9 +94,9 @@ stat_brace <- function(mapping = NULL, data = NULL, inherit.aes=TRUE, #mapping-r
     stat = StatBrace,
     data = data, mapping = mapping, geom = "path",
     position = "identity", show.legend = FALSE, inherit.aes = inherit.aes,
-    params = list(rotate=rotate, bending=bending, npoints=npoints, mid=mid,
+    params = append(dots_path, list(rotate=rotate, bending=bending, npoints=npoints, mid=mid,
                   distance=distance, outerstart=outerstart, width=width,
-                  direction=direction, outside=TRUE, ...)
+                  direction=direction, outside=TRUE))
   )
 
   outbrace <- c(outbrace, added_labels)
