@@ -1,13 +1,24 @@
 #will build a brace from the min, max and median values of x and y, taking the rotation into account
+
+#' Imports:
+#' stats
+#'
+#' @inheritParams stat_brace
+#' @inheritParams .coordCorrection
+#' @import stats
+#'
 .seekBrace <- function(
-  x, y,
-  rotate, bending, npoints
+  x,
+  y,
+  rotate,
+  bending,
+  npoints
 ){
 
   xstart <- min(x)
   ystart <- min(y)
-  xmid <- median(x)
-  ymid <- median(y)
+  xmid <- stats::median(x)
+  ymid <- stats::median(y)
   xend <- max(x)
   yend <- max(y)
 
@@ -48,6 +59,15 @@
   #==========================================================
   #create brace data points by calculating 4 quarter circles
   #note: list item names reflect a brace pointing either to the right or up
+  rounds <- list(
+    data.frame(x=xstart,y=ystart),
+    leftQuartercircle = circle(xstart+xradius, ystart)[seq(npoints/4+1, npoints/2),],
+    leftmidQuartercircle = circle(xmid-xradius, yend)[seq(npoints/4*3+1, npoints),],
+    data.frame(x=xmid,y=yend),
+    rightmidQuartercircle = circle(xmid+xradius, yend)[seq(npoints/2+1, npoints/4*3),],
+    rightQuartercircle = circle(xend-xradius, ystart)[seq(1,npoints/4),],
+    data.frame(x=xend,y=ystart)
+  )
   if(any(rotate==c(90, 270))){
     rounds <- list(
       data.frame(x=xstart,y=yend),
@@ -58,16 +78,6 @@
       lowerQuartercircle = circle(xstart, ystart+yradius)[seq(npoints/4*3+1, npoints),],
       data.frame(x=xstart,y=ystart)
     )
-  }else{
-    rounds <- list(
-      data.frame(x=xstart,y=ystart),
-      leftQuartercircle = circle(xstart+xradius, ystart)[seq(npoints/4+1, npoints/2),],
-      leftmidQuartercircle = circle(xmid-xradius, yend)[seq(npoints/4*3+1, npoints),],
-      data.frame(x=xmid,y=yend),
-      rightmidQuartercircle = circle(xmid+xradius, yend)[seq(npoints/2+1, npoints/4*3),],
-      rightQuartercircle = circle(xend-xradius, ystart)[seq(1,npoints/4),],
-      data.frame(x=xend,y=ystart)
-    )
   }
 
   output <- do.call(rbind, rounds)
@@ -76,10 +86,9 @@
   #==order to avoid zickzack==#
   #===========================#
   # this will prepare the data to not show zickzack-lines as long as geom_path is used (not geom_line!)
+  output <- output[order(output$x),]
   if(any(rotate==c(90, 270))){
     output <- output[order(output$y),]
-  }else{
-    output <- output[order(output$x),]
   }
 
   rownames(output) <- NULL

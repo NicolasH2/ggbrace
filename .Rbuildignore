@@ -1,2 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^.gitignore
+^.github
+^.Rhistory
+^readme_files
+^vignettes
+^ggbrace_

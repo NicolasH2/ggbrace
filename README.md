@@ -17,11 +17,8 @@ Install the package from the git repository:
 devtools::install_github("nicolash2/ggbrace")
 ```
 
-# Default braces
-ggbrace has 3 ways of creating braces:
-- `geom_brace #(manual mode)`: manually define border for the braces and set (`inherit.data=FALSE`)
-- `geom_brace #(default mode)`: braces are drawn automatically in the confines of the data
-- `geom_stat`: braces are drawn automatically to enclose data points
+# Plotting braces
+The new version of ggbrace uses only `stat_brace` to automatically enclose data points. `stat_bracetext` is used to generate fitting text.
 
 In our example we use the mtcars data to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
 
@@ -33,9 +30,7 @@ plt <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Spec
   geom_point() +
   theme_classic() +
   theme(legend.position="none")
-  
-plt + geom_brace(aes(c(4,7), c(4, 4.5)), inherit.data=F)
-plt + geom_brace()
+
 plt + stat_brace()
 ```
 
@@ -45,30 +40,41 @@ plt + stat_brace()
 
 ## Labels
 
-We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with inherit.aes=T accept it in the mapping (we defined `label=Species` in the main plot already). As the third plot shows, we can also define the space between the brace pointer and the label.
+We can add labels to the braces. For that the `stat_bracetext` is used.
 
 ``` r
-plt + geom_brace(aes(c(4,7), c(4, 4.5), label="my label"), inherit.data=F, labelsize=5)
-plt + geom_brace(labelsize = 5)
-plt + stat_brace(labelsize = 5)
+plt + 
+  stat_brace() +
+  stat_bracetext()
 ```
 <img src="readme_files/custom_text.png"/>
 
 ## Rotation
 
-We can rotate the braces by 90, 180 or 270 degrees via the `rotate` arguement. The labels are not automatically rotated. For that we have to define the `labelrotate` arguement separately
+We can rotate the braces by 90, 180 or 270 degrees via the `rotate` argument. Note that any changes in `stat_brace` also have to be made in `stat_bracetext` so that the text appears at the right position
 
 ``` r
-plt + stat_brace(labelsize=5, rotate = 90)
-plt + stat_brace(labelsize=5, rotate = 90, labelrotate=90)
-plt + stat_brace(labelsize=5, rotate = 90, labelrotate=90, labeldistance = 1)
+plt + 
+  stat_brace(rotate = 90) + 
+  stat_bracetext()
+
+plt + 
+  stat_brace(rotate = 90) + 
+  stat_bracetext(rotate = 90)
 ```
 
 <img src="readme_files/custom_rotation.png"/>
 
 ## Location
 
-For `stat_brace`, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature. This last parameter can also be set in `geom_brace` (not shown here).
+For `stat_brace`, the location of the brace is beside the data points by default. We can change that by setting the paramter `outside` to `FALSE`.
+
+```r
+plt + stat_brace(outside = FALSE)
+```
+<img src="readme_files/inside.png"/>
+
+When using the default We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature.
 
 ```r
 plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group

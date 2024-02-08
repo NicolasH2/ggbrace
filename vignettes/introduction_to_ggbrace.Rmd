@@ -1,0 +1,129 @@
+---
+title: "Introduction to ggbrace"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to ggbrace}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The purpose of ggbrace is to produce curly braces for ggplot2. It provides three methods to create curly braces in ggplot2 via two functions: geom_brace and stat_brace.
+
+- geom_brace in default mode plots a brace based on x and y values manually provided.
+- geom_brace can plot braces based on the confines of data when the mapping or `inherit.aes` arguments are given.
+- stat_brace plots braces partially in the confines of data so that the brace is set apart from it.
+
+For this introduction we will use the mtcars data set to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
+
+```{r setup}
+library(ggbrace)
+library(ggplot2)
+plt <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) + 
+  geom_point() +
+  theme_classic() +
+  theme(legend.position="none")
+```
+
+```{r}
+plt + stat_brace()
+```
+
+
+```{r}
+plt + 
+  stat_brace()+  
+  stat_bracetext()
+```
+
+# Labels & Modifications
+
+## Labels
+
+We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with `inherit.aes=T` accept it in the mapping (we defined `label=Species` in the main plot already). As the third plot shows, we can also define the space between the brace pointer and the label.
+
+```{r}
+plt + 
+  stat_brace()+  
+  stat_bracetext(size=6)
+```
+
+## Rotation
+
+We can rotate the braces by 90, 180 or 270 degrees via the `rotate` arguement. The labels are not automatically rotated. For that we have to define the `angle` argument separately
+
+```{r}
+plt + 
+  stat_brace(rotate=0)+  
+  stat_bracetext(rotate=0, textdistance=0, angle=30)
+```
+
+
+```{r}
+plt + stat_brace(rotate = 90)
+```
+
+## Location
+
+For `stat_brace`, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature. This last parameter can also be set in `geom_brace` (not shown here).
+
+```{r}
+plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group
+```
+
+
+```{r}
+plt + stat_brace(outerstart = 5) # all braces are put at the same position
+```
+
+
+```{r}
+plt + stat_brace(outerstart = 5, width = 1) # all braces get the same width
+```
+
+
+```{r}
+plt + stat_brace(outerstart = 5, width = 1, bending = 0.1) # all braces get the same curvature
+```
+
+# Outside of plotting area
+
+To vizualize the brace outside of the plotting area, we can simply use two ggplot2 functions. 
+- `coord_cartesian` needs to be mentioned with x and/or y range of the plotting area and the parameter `clip="off"` to allow plotting of objects outside of that area.
+- within the `theme` function, `plot.margin` needs to be set to expand the outside area. This happens with 4 numbers (above, right, below, left). This can best be achieved with the `"npc"` unit, as it reflects the plot units and is therefore maintained independent of the pixels, cm, etc. Other units can be seen with ?unit (under grid).
+
+```{r}
+plt + stat_brace(outerstart = 4.5) + 
+  coord_cartesian(y=range(iris$Sepal.Width), clip = "off") + #for the range just use the data for the respective axis
+  theme(plot.margin = unit(c(0.25, 0.11, 0.11, 0.11), units="npc"))
+```
+
+# Discrete values
+
+Unfortunately, as of now, ggbrace isn't behaving well with discrete x/y axes, which is why they will have to be wrapped into the `seq_along` function within the `aes()`.
+
+```{r}
+df <- data.frame(x = c("a","b","c","d","e"), y = 1:5)     
+
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  stat_brace(aes(x=seq_along(x)))
+```
+
+This wrapping into the `seq_along` function is also used in the `coord_cartesian` function when trying to plot outside the plotting area.
+
+```{r}
+df <- data.frame(x = c("a","b","c","d","e"), y = 1:5)     
+
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  stat_brace(aes(x=seq_along(x)), rotate=90) +
+  coord_cartesian(x=range(seq_along(df$x)), clip = "off") + 
+  theme(plot.margin = unit(c(0.5, 7, 0.5, 0.5), units="lines")) #other units would be "cm" etc.
+```

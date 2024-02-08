@@ -1,18 +1,22 @@
 Package: ggbrace
 Type: Package
-Title: Curly Braces in ggplot
+Title: Curly Braces in Ggplot
 Depends:
-    R (>= 3.6.0),
-    ggplot2 (>= 3.3.1)
-Imports: ggplot2 (>= 3.3.1)
-Version: 0.1.0
+    R (>= 4.3)
+Imports: 
+    ggplot2 (>= 3.4.2),
+    stats (>= 4.3.1)
+Version: 0.1.1
 Author: Nicolas Huber
-Maintainer: Nicolas Huber <info.huber@aold.de>
-Description: Provides three methods to create curly braces in ggplot2 via two functions: geom_brace and stat_brace.
-    geom_brace in default mode plots a brace based on x and y values manually provided.
-    geom_brace can plot braces based on the confines of data when the mapping or inherit.aes arguement are given.
+Maintainer: Nicolas Huber <info.huber@aol.de>
+Description: Provides curly braces in ggplot2 plus matching text.
     stat_brace plots braces partially in the confines of data so that the brace is set apart from it.
-License: MIT
+    stat_bracetext plots corresponding text, fitting to the braces from stat_brace.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
