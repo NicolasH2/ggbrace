@@ -46,12 +46,16 @@ plt +
 
 ## Labels
 
-We can add labels to the braces. For that the `labelsize` parameter has to be set. The label for single braces with `geom_brace` must be defined as a string, whereas `stat_brace` and `geom_brace` with `inherit.aes=T` accept it in the mapping (we defined `label=Species` in the main plot already). As the third plot shows, we can also define the space between the brace pointer and the label.
+We can modify the text in the same way we would modify other text in ggplot. We can also switch between different text geoms (e.g. `geom=label`).
 
 ```{r}
 plt + 
   stat_brace()+  
-  stat_bracetext(size=6)
+  stat_bracetext(size=6, angle=15, fontface="bold")
+
+plt + 
+  stat_brace()+  
+  stat_bracetext(geom="label")
 ```
 
 ## Rotation
@@ -60,8 +64,8 @@ We can rotate the braces by 90, 180 or 270 degrees via the `rotate` arguement. T
 
 ```{r}
 plt + 
-  stat_brace(rotate=0)+  
-  stat_bracetext(rotate=0, textdistance=0, angle=30)
+  stat_brace(rotate=90)+  
+  stat_bracetext(rotate=90)
 ```
 
 
@@ -71,25 +75,36 @@ plt + stat_brace(rotate = 90)
 
 ## Location
 
-For `stat_brace`, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature. This last parameter can also be set in `geom_brace` (not shown here).
+By default, the location of the brace is beside the data points. We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature. This last parameter can also be set in `geom_brace` (not shown here).
 
 ```{r}
-plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group
+plt + stat_brace(outside = FALSE) # the braces are put at a defined distance to the last data point of their group
 ```
 
+By default, braces have a position and shape that is calculated based on their data points.The position can be changed with the parameters `distance` (to the data points) and `outerstart` (in the coordinate system). The width of the braces can be set with the `width` argument (absolute coordinate system units), while the bending of the brace can be set with `bending` (number from 0 to 1).
+
+- all braces are put at the same distance to their data points
 
 ```{r}
-plt + stat_brace(outerstart = 5) # all braces are put at the same position
+plt + stat_brace(distance = 2)
 ```
 
+- all braces are put at the same position
 
 ```{r}
-plt + stat_brace(outerstart = 5, width = 1) # all braces get the same width
+plt + stat_brace(outerstart = 5)
 ```
 
+- all braces get the same width
 
 ```{r}
-plt + stat_brace(outerstart = 5, width = 1, bending = 0.1) # all braces get the same curvature
+plt + stat_brace(outerstart = 5, width = 1)
+```
+
+- all braces get the same curvature
+
+```{r}
+plt + stat_brace(outerstart = 5, width = 1, bending = 0.1)
 ```
 
 # Outside of plotting area

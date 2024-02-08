@@ -20,11 +20,12 @@ devtools::install_github("nicolash2/ggbrace")
 # Plotting braces
 The new version of ggbrace uses only `stat_brace` to automatically enclose data points. `stat_bracetext` is used to generate fitting text.
 
-In our example we use the mtcars data to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
+In our example we use the iris data to create a dotplot. Then we look at how each of the three different modes draws braces to that plot.
 
 ``` r
 library(ggplot2)
 library(ggbrace)
+data(iris)
 
 plt <- ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) + 
   geom_point() +
@@ -47,6 +48,15 @@ plt +
   stat_brace() +
   stat_bracetext()
 ```
+<img src="readme_files/braces_with_text.png"/>
+
+We can modify the text in the same way we would modify other text in ggplot. We can also switch between different text geoms (e.g. `geom=label`).
+
+``` r
+plt + 
+  stat_brace() +
+  stat_bracetext(size=6, angle=15, fontface="bold")
+```
 <img src="readme_files/custom_text.png"/>
 
 ## Rotation
@@ -56,10 +66,6 @@ We can rotate the braces by 90, 180 or 270 degrees via the `rotate` argument. No
 ``` r
 plt + 
   stat_brace(rotate = 90) + 
-  stat_bracetext()
-
-plt + 
-  stat_brace(rotate = 90) + 
   stat_bracetext(rotate = 90)
 ```
 
@@ -67,14 +73,14 @@ plt +
 
 ## Location
 
-For `stat_brace`, the location of the brace is beside the data points by default. We can change that by setting the paramter `outside` to `FALSE`.
+By default, the location of the brace is beside the data points by default. We can change that by setting the paramter `outside` to `FALSE`.
 
 ```r
 plt + stat_brace(outside = FALSE)
 ```
 <img src="readme_files/inside.png"/>
 
-When using the default We can define how far away, where and how big the braces are. We can also define the `bending`, i.e. the curvature.
+By default, braces have a position and shape that is calculated based on their data points.The position can be changed with the parameters `distance` (to the data points) and `outerstart` (in the coordinate system). The width of the braces can be set with the `width` argument (absolute coordinate system units), while the bending of the brace can be set with `bending` (number from 0 to 1).
 
 ```r
 plt + stat_brace(distance = 2) # the braces are put at a defined distance to the last data point of their group
