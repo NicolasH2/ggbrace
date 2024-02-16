@@ -23,9 +23,55 @@
 #' library(ggbrace)
 #' library(ggplot2)
 #' data(iris)
+#'
+#' # regular braces
 #' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
 #'  geom_point() +
 #'  stat_brace()
+#'
+#'  # rotated braces
+#' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
+#'  geom_point() +
+#'  stat_brace(rotate = 90)
+#'
+#'  # braces inside the given coordinates
+#' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
+#'  geom_point() +
+#'  stat_brace(outside = FALSE)
+#'
+#'  # braces with a defined distance from their data points
+#' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
+#'  geom_point() +
+#'  stat_brace(distance = 2)
+#'
+#'  # braces starting at a defined point
+#' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
+#'  geom_point() +
+#'  stat_brace(outerstart = 5)
+#'
+#'  # braces starting at a defined point and with defined width
+#' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
+#'  geom_point() +
+#'  stat_brace(outerstart = 5, width = 1)
+#'
+#'  # braces starting at a defined point and with defined width and defined curve bending
+#' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
+#'  geom_point() +
+#'  stat_brace(outerstart = 5, width = 1, bending = 0.1)
+#'
+#'  # braces outside of the plotting area
+#' ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, label=Species)) +
+#'  geom_point() +
+#'  stat_brace(outerstart = 4.5) +
+#'  coord_cartesian(y=range(iris$Sepal.Width), clip = "off") +
+#'  theme(plot.margin = unit(c(0.25, 0.11, 0.11, 0.11), units="npc"))
+#'
+#'  # braces with discrete values
+#'  df <- data.frame(x = c("a","b","c","d","e"), y = 1:5)
+#'  ggplot(df, aes(x, y)) +
+#'    geom_point() +
+#'    stat_brace(aes(x=seq_along(x)))
+#'
 #'
 stat_brace <- function(
     mapping = NULL,
