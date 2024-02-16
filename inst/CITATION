@@ -1,0 +1,10 @@
+bibentry(
+  bibtype  = "Article",
+  header   = "To cite ggbrace in publications, please use",
+  textVersion = "N. Huber. ggbrace: Curly Braces for ggplot2. 2016.",
+  title    = "ggbrace: Curly Braces for ggplot2",
+  author   = "Nicolas Huber",
+  journal  = ,
+  year     = "2016",
+  url      = "https://github.com/NicolasH2/ggbrace"
+)
