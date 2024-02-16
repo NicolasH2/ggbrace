@@ -3,13 +3,18 @@
 An [R](https://www.r-project.org) package that draws curly braces in [ggplot2](https://ggplot2.tidyverse.org/).
 
 # Table of contents
+- [Updates](#Updates)
 - [Installation](#Installation)
-- [Default braces](#Default-braces)
+- [Default braces](#Plotting-braces)
 - [Labels & Modifications](#Labels-&-Modifications)
 - [Outside of plotting area](#Outside-of-plotting-area)
 - [Discrete values](#Discrete-values)
 
 <img src="readme_files/frontImage.png"/>
+
+# Updates
+Version 0.1.1 (Feb 2024) of ggbrace removed the original `geom_brace` function, which plots braces within the confines of the x-y-values. The same functionality can now be achieved with `stat_brace( outside = FALSE )`. Additionally, the text functionality is now its own function `stat_bracetext` which allows for more customization of the text using the same arguments that would be used in `geom_text` or `geom_label`. By default `stat_brace` uses `geom="text"` which can be changed e.g. by `stat_brace(geom="label")`.
+
 
 # Installation
 Install the package from the git repository:
