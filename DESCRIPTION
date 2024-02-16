@@ -1,6 +1,6 @@
 Package: ggbrace
 Type: Package
-Title: Curly Braces in Ggplot
+Title: Curly Braces for ggplot2
 Depends:
     R (>= 4.3)
 Imports: 
@@ -19,4 +19,3 @@ RoxygenNote: 7.2.3
 Suggests: 
     knitr,
     rmarkdown
-VignetteBuilder: knitr
