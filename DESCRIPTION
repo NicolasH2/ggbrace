@@ -1,17 +1,15 @@
 Package: ggbrace
 Type: Package
-Title: Curly Braces for ggplot2
+Title: Curly Braces for 'ggplot2'
 Depends:
     R (>= 4.3)
 Imports: 
     ggplot2 (>= 3.4.2),
     stats (>= 4.3.1)
 Version: 0.1.1
-Author: Nicolas Huber
-Maintainer: Nicolas Huber <info.huber@aol.de>
-Description: Provides curly braces in ggplot2 plus matching text.
-    stat_brace plots braces partially in the confines of data so that the brace is set apart from it.
-    stat_bracetext plots corresponding text, fitting to the braces from stat_brace.
+Description: Provides curly braces in 'ggplot2' plus matching text.
+    stat_brace() plots braces partially in the confines of data so that the brace is set apart from it.
+    stat_bracetext() plots corresponding text, fitting to the braces from stat_brace().
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -19,3 +17,5 @@ RoxygenNote: 7.2.3
 Suggests: 
     knitr,
     rmarkdown
+Authors@R: 
+    person("Nicolas", "Huber", , "info.huber@aol.de", role = c("aut", "cre", "cph"))
