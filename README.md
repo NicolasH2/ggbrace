@@ -17,7 +17,11 @@ Version 0.1.1 (Feb 2024) of ggbrace removed the original `geom_brace` function, 
 
 
 # Installation
-Install the package from the git repository:
+Install the package from CRAN
+``` r
+install.packages("ggbrace")
+```
+or from this git repository:
 ``` r
 devtools::install_github("nicolash2/ggbrace")
 ```
