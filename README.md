@@ -123,3 +123,5 @@ ggplot(df, aes(x=Species, y=Sepal.Length, group=Group)) +
     geom_jitter() +
     stat_brace(discreteAxis=TRUE)
 ```
+
+<img src="readme_files/brace_discreteAxis.png"/>
