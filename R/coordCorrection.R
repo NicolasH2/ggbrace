@@ -18,7 +18,8 @@
   distance,
   outerstart,
   width,
-  outside
+  outside,
+  discreteAxis=FALSE
 ){
   #to save if-statements, define 2 axes: a and b
   # a is the axis that is enclosed by the brace
@@ -52,6 +53,14 @@
     # b <- b + outerstart - ifelse(direction>0, min(b), max(b)) #change coordinates
     # # change width based on the original width
     # b[b == ifelse(direction>0, max(b), min(b))] <- width + ifelse(direction>0, min(b), max(b))
+  }
+
+  #============================#
+  #==discrete Axis adjustment==#
+  #============================#
+  if(discreteAxis){
+    radius=.45
+    a <- c(min(a,na.rm=T)-radius, a, max(a,na.rm=T)+radius)
   }
 
   #=============================#
