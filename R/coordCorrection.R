@@ -42,7 +42,6 @@
   #============================================#
   #==change coordinates (position and width)==#
   #============================================#
-  #outside is TRUE for stat_brace and FALSE for geom_brace
   if(outside){
     # change position
     if(is.null(distance)) distance <- diff(base)/50 #set distance to data points
