@@ -14,7 +14,8 @@ stats}
   distance,
   outerstart,
   width,
-  outside
+  outside,
+  discreteAxis = FALSE
 )
 }
 \arguments{
@@ -34,7 +35,9 @@ stats}
 
 \item{width}{number, how wide should the braces be? If NULL (default), will be determined automatically based on the data.}
 
-\item{outside}{boolean, should the brace be outside of the data area or cover the data area?}
+\item{outside}{boolean, should brace be outside of the data area or cover the data area?}
+
+\item{discreteAxis}{boolean, does the embraced axis feature discrete values (often true for bar graphs)}
 }
 \description{
 Imports:
