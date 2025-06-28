@@ -17,6 +17,7 @@
 #' @param outerstart number, overwrites distance; sets all braces to the same origin
 #' @param bending number between 0 and 0.5, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines
 #' @param discreteAxis boolean, does the embraced axis feature discrete values (often true for bar graphs)
+#' @param bracketType text: either "curly" or "square"
 #' @param npoints integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.
 #' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (geom_text) is added.
 #' @export
@@ -86,10 +87,11 @@ stat_brace <- function(
     distance = NULL,
     outerstart = NULL,
     bending = NULL,
-    npoints = 100,
     show.legend = FALSE,
     inherit.aes = TRUE,
-    discreteAxis=FALSE
+    discreteAxis = FALSE,
+    bracketType = "curly",
+    npoints = 100
 ){
   ggplot2::layer(
     data = data,
@@ -108,7 +110,8 @@ stat_brace <- function(
       outside = outside,
       distance = distance,
       outerstart = outerstart,
-      discreteAxis=discreteAxis,
+      discreteAxis = discreteAxis,
+      bracketType = bracketType,
       ...
     )
   )

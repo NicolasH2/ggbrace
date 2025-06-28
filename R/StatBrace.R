@@ -13,7 +13,8 @@ StatBrace <- ggplot2::ggproto(
     outerstart = NULL,
     width = NULL,
     outside = TRUE,
-    discreteAxis=FALSE
+    discreteAxis=FALSE,
+    bracketType="curly"
   ){
     x = data$x
     y = data$y
@@ -29,7 +30,7 @@ StatBrace <- ggplot2::ggproto(
       width = width,
       outside = outside,
       bending = bending,
-      discreteAxis=discreteAxis
+      discreteAxis = discreteAxis
     )[["dataCoords"]]
 
     #provides data.frame with x and y values to draw the brace
@@ -38,7 +39,8 @@ StatBrace <- ggplot2::ggproto(
       y = coords$y,
       rotate = rotate,
       bending = bending,
-      npoints = npoints
+      npoints = npoints,
+      bracketType = bracketType
     )
 
     return(brace)

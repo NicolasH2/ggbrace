@@ -111,9 +111,10 @@ plt + stat_brace(outerstart = 4.5) +
 ```
 <img src="readme_files/outside.png"/>
 
-# Discrete/Categorical axis
+# New Features - only in github version
 
-The CRAN version of ggbrace does not yet have it, but the github version has the needed functionality.
+## Discrete/Categorical axis
+
 Use `discreteAxis=TRUE` to ensure the braces embrace the category.
 
 ```r
@@ -125,3 +126,14 @@ ggplot(df, aes(x=Species, y=Sepal.Length, group=Group)) +
 ```
 
 <img src="readme_files/brace_discreteAxis.png"/>
+
+## Square brackets
+
+Use `bracketType="square"` to produce square brackets instead of curly ones. The bracket have the same width as the curly ones in order to comply with the text. Use the `width` parameter to adjust their size.
+
+```r
+plt + stat_brace(bracketType="square", width=.2)
+```
+
+<img src="readme_files/brace_squareBrackets.png"/>
+

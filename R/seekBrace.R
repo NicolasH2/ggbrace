@@ -12,7 +12,8 @@
   y,
   rotate,
   bending,
-  npoints
+  npoints,
+  bracketType
 ){
   xstart <- min(x)
   ystart <- min(y)
@@ -29,10 +30,24 @@
     xend <- min(x)
   }
 
+  #=====================#
+  #==if square bracket==#
+  #=====================#
+  if(bracketType=="square"){
+    output <- data.frame(x=c(xstart,xstart,xend,xend), y=c(ystart,yend,yend,ystart))
+    output <- output[order(output$x),]
+    if(any(rotate==c(90, 270))){
+      output <- output[order(output$y),]
+    }
+
+    rownames(output) <- NULL
+    return(output)
+  }
+
   #===================#
   #==set brace radii==#
   #===================#
-  #the brace is basically a combination of 4 quartercircles or more accurately 4 quarterellipses
+  #the brace is basically a combination of 4 quarterellipses
   #the radius on the axis along which the brace points, is half that of the brace width (because it contains 2 quatercircles)
   xradius <- (xend-xstart)/2
   yradius <- (yend-ystart)/2
@@ -40,6 +55,10 @@
   #the radius on the axis that is enclosed by the brace, is a quarter of the brace width (because it contains 4 quatercircles)
   #the user can change that radius to a fixed value (bending)
   if(!is.null(bending)) bending <- median(c(0.0000001, abs(bending), 0.5), na.rm=T) #prevent zickzack lines
+  if(bracketType=="square"){
+    bending <- 0.0000001
+    npoints <- 100
+  }
   if(any(rotate==c(90, 270))){
     yradius <- yradius/4
     if(!is.null(bending)) yradius <- bending
@@ -79,6 +98,7 @@
       data.frame(x=xstart,y=ystart)
     )
   }
+  # if(bracketType=="square") rounds <- rounds[c(1,2,6,7)]
 
   output <- do.call(rbind, rounds)
 
