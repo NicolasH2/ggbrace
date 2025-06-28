@@ -15,7 +15,7 @@
 #' @param outside boolean, if TRUE, brace is next to the data area; if FALSE, brace is inside the data area
 #' @param distance number, space between the brace and the nearest data point
 #' @param outerstart number, overwrites distance; sets all braces to the same origin
-#' @param bending number, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines
+#' @param bending number between 0 and 0.5, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines
 #' @param discreteAxis boolean, does the embraced axis feature discrete values (often true for bar graphs)
 #' @param npoints integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.
 #' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (geom_text) is added.
