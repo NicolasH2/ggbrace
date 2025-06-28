@@ -11,6 +11,7 @@ StatBraceLabel <- ggplot2::ggproto(
     outerstart = NULL,
     width = NULL,
     outside = TRUE,
+    bending = NULL,
     discreteAxis=FALSE
   ){
       x = data$x
