@@ -20,7 +20,7 @@
   width,
   outside,
   bending,
-  discreteAxis=FALSE
+  discreteAxis = FALSE
 ){
   #to save if-statements, define 2 axes: a and b
   # a is the axis that is enclosed by the brace

@@ -30,7 +30,7 @@ StatBrace <- ggplot2::ggproto(
       width = width,
       outside = outside,
       bending = bending,
-      discreteAxis=discreteAxis
+      discreteAxis = discreteAxis
     )[["dataCoords"]]
 
     #provides data.frame with x and y values to draw the brace

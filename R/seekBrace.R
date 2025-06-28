@@ -30,6 +30,20 @@
     xend <- min(x)
   }
 
+  #=====================#
+  #==if square bracket==#
+  #=====================#
+  if(bracketType=="square"){
+    output <- data.frame(x=c(xstart,xstart,xend,xend), y=c(ystart,yend,yend,ystart))
+    output <- output[order(output$x),]
+    if(any(rotate==c(90, 270))){
+      output <- output[order(output$y),]
+    }
+
+    rownames(output) <- NULL
+    return(output)
+  }
+
   #===================#
   #==set brace radii==#
   #===================#
@@ -84,7 +98,8 @@
       data.frame(x=xstart,y=ystart)
     )
   }
-  if(bracketType=="square") rounds <- rounds[c(1,2,6,7)]
+  # if(bracketType=="square") rounds <- rounds[c(1,2,6,7)]
+
   output <- do.call(rbind, rounds)
 
   #===========================#

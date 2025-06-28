@@ -10,7 +10,8 @@ StatBraceLabel <- ggplot2::ggproto(
     distance = NULL,
     outerstart = NULL,
     width = NULL,
-    outside = TRUE
+    outside = TRUE,
+    discreteAxis=FALSE
   ){
       x = data$x
       y = data$y
@@ -25,7 +26,9 @@ StatBraceLabel <- ggplot2::ggproto(
         distance = distance,
         outerstart = outerstart,
         width = width,
-        outside = outside
+        outside = outside,
+        bending = bending,
+        discreteAxis = discreteAxis
       )[["labelCoords"]]
 
       return(coords)
