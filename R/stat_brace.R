@@ -111,7 +111,7 @@ stat_brace <- function(
       distance = distance,
       outerstart = outerstart,
       discreteAxis = discreteAxis,
-      braceType = braceType,
+      bracketType = bracketType,
       ...
     )
   )
