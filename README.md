@@ -137,4 +137,3 @@ plt + stat_brace(bracketType="square", width=.2)
 
 <img src="readme_files/brace_squareBrackets.png"/>
 
-The CRAN ver
