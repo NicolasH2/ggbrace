@@ -39,7 +39,7 @@
 
   #the radius on the axis that is enclosed by the brace, is a quarter of the brace width (because it contains 4 quatercircles)
   #the user can change that radius to a fixed value (bending)
-  if(!isnull(bending)) bending <- median(c(0.0000001, abs(bending), 0.5), na.rm=T) #prevent zickzack lines
+  if(!is.null(bending)) bending <- median(c(0.0000001, abs(bending), 0.5), na.rm=T) #prevent zickzack lines
   if(any(rotate==c(90, 270))){
     yradius <- yradius/4
     if(!is.null(bending)) yradius <- bending
