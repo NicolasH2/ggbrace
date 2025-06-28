@@ -38,7 +38,7 @@ stats}
 
 \item{outside}{boolean, if TRUE, brace is next to the data area; if FALSE, brace is inside the data area}
 
-\item{bending}{number, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
+\item{bending}{number between 0 and 0.5, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
 
 \item{discreteAxis}{boolean, does the embraced axis feature discrete values (often true for bar graphs)}
 }

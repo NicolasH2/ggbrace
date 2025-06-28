@@ -5,7 +5,7 @@
 \title{Imports:
 stats}
 \usage{
-.seekBrace(x, y, rotate, bending, npoints)
+.seekBrace(x, y, rotate, bending, npoints, bracketType)
 }
 \arguments{
 \item{x}{vector, x values of all data points}
@@ -14,9 +14,11 @@ stats}
 
 \item{rotate}{number in degrees, defines where the brace points to: 0=up, 90=right, 180=down, 270=left}
 
-\item{bending}{number, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
+\item{bending}{number between 0 and 0.5, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
+
+\item{bracketType}{text: either "curly" or "square"}
 }
 \description{
 Imports:
