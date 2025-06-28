@@ -28,6 +28,7 @@ StatBrace <- ggplot2::ggproto(
       outerstart = outerstart,
       width = width,
       outside = outside,
+      bending = bending,
       discreteAxis=discreteAxis
     )[["dataCoords"]]
 

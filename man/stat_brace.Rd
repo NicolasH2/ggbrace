@@ -7,8 +7,6 @@
 stat_brace(
   mapping = NULL,
   data = NULL,
-  geom = "path",
-  position = "identity",
   ...,
   rotate = 0,
   width = NULL,
@@ -44,32 +42,6 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{geom}{The geometric object to use to display the data for this layer.
-When using a \verb{stat_*()} function to construct a layer, the \code{geom} argument
-can be used to override the default coupling between stats and geoms. The
-\code{geom} argument accepts the following:
-\itemize{
-\item A \code{Geom} ggproto subclass, for example \code{GeomPoint}.
-\item A string naming the geom. To give the geom as a string, strip the
-function name of the \code{geom_} prefix. For example, to use \code{geom_point()},
-give the geom as \code{"point"}.
-\item For more information and other ways to specify the geom, see the
-\link[ggplot2:layer_geoms]{layer geom} documentation.
-}}
-
-\item{position}{A position adjustment to use on the data for this layer. This
-can be used in various ways, including to prevent overplotting and
-improving the display. The \code{position} argument accepts the following:
-\itemize{
-\item The result of calling a position function, such as \code{position_jitter()}.
-This method allows for passing extra arguments to the position.
-\item A string naming the position adjustment. To give the position as a
-string, strip the function name of the \code{position_} prefix. For example,
-to use \code{position_jitter()}, give the position as \code{"jitter"}.
-\item For more information and other ways to specify the position, see the
-\link[ggplot2:layer_positions]{layer position} documentation.
-}}
-
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}'s \code{params} argument. These
 arguments broadly fall into one of 4 categories below. Notably, further
 arguments to the \code{position} argument, or aesthetics that are required
@@ -98,19 +70,19 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 
-\item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
+\item{rotate}{number in degrees, defines where the brace points to: 0=up, 90=right, 180=down, 270=left}
 
-\item{width}{number, how wide should the braces be? If NULL (default), will be determined automatically based on the data.}
+\item{width}{number, how wide is the braces? If NULL (default), will be determined by data.}
 
-\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75). If NULL (default), will be determined automatically based on the data.}
+\item{mid}{number, where is the pointer within the brace space (between 0.25 and 0.75). If NULL (default), will be determined by data.}
 
-\item{outside}{boolean, should brace be outside of the data area or cover the data area?}
+\item{outside}{boolean, if TRUE, brace is next to the data area; if FALSE, brace is inside the data area}
 
 \item{distance}{number, space between the brace and the nearest data point}
 
-\item{outerstart}{number, overwrites distance and provides one coordinate for all braces}
+\item{outerstart}{number, overwrites distance; sets all braces to the same origin}
 
-\item{bending}{number, how strongly the curves of the braces should be bent (the higher the more round). Note: too high values will result in the brace showing zick-zack lines}
+\item{bending}{number, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
 
 \item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
 

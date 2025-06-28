@@ -15,6 +15,7 @@ stats}
   outerstart,
   width,
   outside,
+  bending,
   discreteAxis = FALSE
 )
 }
@@ -23,19 +24,21 @@ stats}
 
 \item{y}{vector, y value of all data points}
 
-\item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
+\item{rotate}{number in degrees, defines where the brace points to: 0=up, 90=right, 180=down, 270=left}
 
-\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75). If NULL (default), will be determined automatically based on the data.}
+\item{mid}{number, where is the pointer within the brace space (between 0.25 and 0.75). If NULL (default), will be determined by data.}
 
 \item{textdistance}{number, distance of the label to the brace pointer}
 
 \item{distance}{number, space between the brace and the nearest data point}
 
-\item{outerstart}{number, overwrites distance and provides one coordinate for all braces}
+\item{outerstart}{number, overwrites distance; sets all braces to the same origin}
 
-\item{width}{number, how wide should the braces be? If NULL (default), will be determined automatically based on the data.}
+\item{width}{number, how wide is the braces? If NULL (default), will be determined by data.}
 
-\item{outside}{boolean, should brace be outside of the data area or cover the data area?}
+\item{outside}{boolean, if TRUE, brace is next to the data area; if FALSE, brace is inside the data area}
+
+\item{bending}{number, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
 
 \item{discreteAxis}{boolean, does the embraced axis feature discrete values (often true for bar graphs)}
 }

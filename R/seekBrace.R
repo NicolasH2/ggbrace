@@ -39,7 +39,9 @@
   yradius <- (yend-ystart)/2
 
   #the radius on the axis that is enclosed by the brace, is a quarter of the brace width (because it contains 4 quatercircles)
-  #the user can change that raius to a fixed value (bending)
+  #the user can change that radius to a fixed value (bending)
+  if(!is.null(bending)) bending <- max(c(0.00000000001, bending), na.rm=T) #can cause problems when set to 0
+  if(!is.null(bending)) bending <- min(c(0.5, bending),na.rm=T) #causes zick-zack lines above 0.5
   if(any(rotate==c(90, 270))){
     yradius <- yradius/4
     if(!is.null(bending)) yradius <- bending

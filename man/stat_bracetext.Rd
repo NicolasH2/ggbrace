@@ -96,17 +96,17 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 
-\item{rotate}{number, defines where the brace is pointing to: 0=up, 90=right, 180=down, 270=left. When specified by user, will overwrite other directions the brace might have from x/y coordinates.}
+\item{rotate}{number in degrees, defines where the brace points to: 0=up, 90=right, 180=down, 270=left}
 
-\item{width}{number, how wide should the braces be? If NULL (default), will be determined automatically based on the data.}
+\item{width}{number, how wide is the braces? If NULL (default), will be determined by data.}
 
-\item{mid}{number, where the pointer is within the bracket space (between 0.25 and 0.75). If NULL (default), will be determined automatically based on the data.}
+\item{mid}{number, where is the pointer within the brace space (between 0.25 and 0.75). If NULL (default), will be determined by data.}
 
-\item{outside}{boolean, should brace be outside of the data area or cover the data area?}
+\item{outside}{boolean, if TRUE, brace is next to the data area; if FALSE, brace is inside the data area}
 
 \item{distance}{number, space between the brace and the nearest data point}
 
-\item{outerstart}{number, overwrites distance and provides one coordinate for all braces}
+\item{outerstart}{number, overwrites distance; sets all braces to the same origin}
 
 \item{textdistance}{number, distance of the label to the brace pointer}
 
