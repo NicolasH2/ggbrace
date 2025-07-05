@@ -12,13 +12,13 @@ stats}
 
 \item{y}{vector, y value of all data points}
 
-\item{rotate}{number in degrees, defines where the brace points to: 0=up, 90=right, 180=down, 270=left}
+\item{rotate}{number in degrees. Defines where the brace points to: 0=up (default), 90=right, 180=down, 270=left}
 
-\item{bending}{number between 0 and 0.5, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
+\item{bending}{number from 0 to 0.5. Determines bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines}
 
-\item{npoints}{integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.}
+\item{npoints}{integer. Number of points generated for the brace curves. Will be rounded to be a multiple of 4 for calculation purposes.}
 
-\item{bracketType}{text: either "curly" or "square"}
+\item{bracketType}{text choice. Either "curly" (default) or "square"}
 }
 \description{
 Imports:

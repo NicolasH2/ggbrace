@@ -9,17 +9,17 @@
 #' @inheritParams ggplot2::geom_text
 #' @import ggplot2
 #'
-#' @param rotate number in degrees, defines where the brace points to: 0=up, 90=right, 180=down, 270=left
-#' @param width number, how wide is the braces? If NULL (default), will be determined by data.
-#' @param mid number, where is the pointer within the brace space (between 0.25 and 0.75). If NULL (default), will be determined by data.
-#' @param outside boolean, if TRUE, brace is next to the data area; if FALSE, brace is inside the data area
-#' @param distance number, space between the brace and the nearest data point
-#' @param outerstart number, overwrites distance; sets all braces to the same origin
-#' @param bending number between 0 and 0.5, how strong is the bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines
-#' @param discreteAxis boolean, does the embraced axis feature discrete values (often true for bar graphs)
-#' @param bracketType text: either "curly" or "square"
-#' @param npoints integer, number of points generated for the brace curves (resolution). This number will be rounded to be a multiple of 4 for calculation purposes.
-#' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, a another layer (geom_text) is added.
+#' @param rotate number in degrees. Defines where the brace points to: 0=up (default), 90=right, 180=down, 270=left
+#' @param width number. Distance from the brace's start to its tip. If NULL (default), will be determined by data.
+#' @param mid number from 0.25 to 0.75. Position of the pointer within the brace space. If NULL (default), will be determined by data.
+#' @param outside boolean. If TRUE (default), brace is next to the data area. If FALSE, brace is inside the data area
+#' @param distance number. Space between the brace and the nearest data point. If NULL (default), will be determined by data.
+#' @param outerstart number. If not NULL, overwrites distance and sets all braces to the same origin
+#' @param bending number from 0 to 0.5. Determines bend of the brace curves (0=rectangular). If NULL (default), will be determined by data. If too high, values will result in zick-zack lines
+#' @param discreteAxis boolean. Set to TRUE if the axis along which the brace expands is discrete (often true for bar graphs)
+#' @param bracketType text choice. Either "curly" (default) or "square"
+#' @param npoints integer. Number of points generated for the brace curves. Will be rounded to be a multiple of 4 for calculation purposes.
+#' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object.
 #' @export
 #' @examples
 #' library(ggbrace)

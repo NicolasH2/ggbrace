@@ -96,19 +96,19 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 
-\item{rotate}{number in degrees, defines where the brace points to: 0=up, 90=right, 180=down, 270=left}
+\item{rotate}{number in degrees. Defines where the brace points to: 0=up (default), 90=right, 180=down, 270=left}
 
-\item{width}{number, how wide is the braces? If NULL (default), will be determined by data.}
+\item{width}{number. Distance from the brace's start to its tip. If NULL (default), will be determined by data.}
 
-\item{mid}{number, where is the pointer within the brace space (between 0.25 and 0.75). If NULL (default), will be determined by data.}
+\item{mid}{number from 0.25 to 0.75. Position of the pointer within the brace space. If NULL (default), will be determined by data.}
 
-\item{outside}{boolean, if TRUE, brace is next to the data area; if FALSE, brace is inside the data area}
+\item{outside}{boolean. If TRUE (default), brace is next to the data area. If FALSE, brace is inside the data area}
 
-\item{distance}{number, space between the brace and the nearest data point}
+\item{distance}{number. Space between the brace and the nearest data point. If NULL (default), will be determined by data.}
 
-\item{outerstart}{number, overwrites distance; sets all braces to the same origin}
+\item{outerstart}{number. If not NULL, overwrites distance and sets all braces to the same origin}
 
-\item{textdistance}{number, distance of the label to the brace pointer}
+\item{textdistance}{number. Distance of the label to the brace pointer}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -122,7 +122,7 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
 \value{
-ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, another layer is added.
+ggplot2 layer object (geom_text or geom_label) that can directly be added to a ggplot2 object.
 }
 \description{
 Imports:

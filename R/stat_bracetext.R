@@ -11,8 +11,8 @@
 #' @inheritParams ggplot2::annotate
 #' @import ggplot2
 #'
-#' @param textdistance number, distance of the label to the brace pointer
-#' @return ggplot2 layer object (geom_path) that can directly be added to a ggplot2 object. If a label was provided, another layer is added.
+#' @param textdistance number. Distance of the label to the brace pointer
+#' @return ggplot2 layer object (geom_text or geom_label) that can directly be added to a ggplot2 object.
 #' @export
 #' @examples
 #' library(ggbrace)
