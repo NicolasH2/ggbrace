@@ -35,9 +35,8 @@
   #=====================#
   if(bracketType=="square"){
     output <- data.frame(x=c(xstart,xstart,xend,xend), y=c(ystart,yend,yend,ystart))
-    output <- output[order(output$x),]
     if(any(rotate==c(90, 270))){
-      output <- output[order(output$y),]
+      output <- data.frame(x=c(xstart,xend,xend,xstart), y=c(ystart,ystart,yend,yend))
     }
 
     rownames(output) <- NULL
